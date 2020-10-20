@@ -12,6 +12,6 @@
 > Task 3 & Task 6
 
 ## 3. LAM Lok Hang
-> email: lhlamae | github: ryanlamm | dev branch: 
+> email: lhlamae | github: ryanlamm | dev branch: ryan_dev
 
 > Task 2 & Task 5
