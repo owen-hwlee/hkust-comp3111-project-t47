@@ -7,7 +7,7 @@
 > Task 1 & Task 4
 
 ## 2. WONG Pak To
-> email: <ptwongaa> | github: <hermanwpt> | dev branch: 
+> email: ptwongaa | github: hermanwpt | dev branch: 
 
 > Task 3 & Task 6
 
