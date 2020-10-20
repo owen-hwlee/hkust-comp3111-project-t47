@@ -2,7 +2,7 @@
 > https://github.com/owen-hwlee/hkust-comp3111-project-t47.git
 
 ## 1. LEE Ho Wan Owen
-> email: hwolee | github: owen-hwlee | dev branch: 
+> email: hwolee | github: owen-hwlee | dev branch: owen_dev
 
 > Task 1 & Task 4
 
