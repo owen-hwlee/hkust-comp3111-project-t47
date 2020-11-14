@@ -1,11 +1,23 @@
 package comp3111.popnames;
 
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import edu.duke.FileResource;
+
 public class Profile {
+	
     private int yearOfBirth;
     private String gender;
     private String name;
     private int rank;
     private int freq;
+    
+    // Helper function
+	public static CSVParser getFileParser(int year) {
+	     FileResource fr = new FileResource(String.format("dataset/yob%s.csv", year));
+	     return fr.getCSVParser(false);
+	}
 
     // Profile class constructor with name
     Profile(int yearOfBirth, String gender, String name) {
@@ -13,9 +25,8 @@ public class Profile {
         this.name = name;
         this.gender = gender;
         this.yearOfBirth = yearOfBirth;
-
-        this.freq = -1;     // yet to implement function to find frequency
-
+        
+        this.freq = AnalyzeNames.getFreq(yearOfBirth, name, gender);
         this.rank = AnalyzeNames.getRank(yearOfBirth, name, gender);
     }
 
@@ -26,8 +37,7 @@ public class Profile {
         this.gender = gender;
         this.rank = rank;
 
-        this.freq = -1;     // yet to implement function to find frequency
-
+        this.freq = AnalyzeNames.getFreq(yearOfBirth, rank, gender);
         this.name = AnalyzeNames.getName(yearOfBirth, rank, gender);
     }
 
