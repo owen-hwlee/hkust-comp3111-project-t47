@@ -6,16 +6,7 @@ package comp3111.popnames;
 import org.apache.commons.csv.CSVRecord;
 
 import javafx.fxml.FXML;
-<<<<<<< HEAD
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-=======
 import javafx.scene.control.*;
->>>>>>> refs/remotes/origin/master
 
 public class Controller {
 
@@ -69,21 +60,15 @@ public class Controller {
 
     @FXML
     private Tab tabReport3;
-    
+
     @FXML
-    private RadioButton toggleButtonMR3;
-    
-    @FXML
-    private RadioButton toggleButtonFR3;
+    private ToggleGroup T111;
     
     @FXML
     private TextField textfieldendingingYearR3;
     
     @FXML
     private TextField textfieldstartingYearR3;
-
-    @FXML
-    private ToggleGroup T111;
 
     @FXML
     private Tab tabApp1;
@@ -241,8 +226,9 @@ public class Controller {
     void reporting3() {
     	
         // Parse data from UI
-        String gender;
-        RadioButton rb = ;
+        RadioButton rb1 = (RadioButton)(T11.getSelectedToggle());
+        String gender = rb1.getText();
+        gender = gender.substring(0,1);
 
         int starting_year = Integer.parseInt(textfieldstartingYearR3.getText());
         int ending_year = Integer.parseInt(textfieldendingingYearR3.getText());
@@ -267,9 +253,7 @@ public class Controller {
         // Store into string
         String s;
 
-        textAreaConsole.setText(s);
-    	
-        textAreaConsole.setText(s);
+        textAreaConsole.setText("dfd");
     }
 
     /**
