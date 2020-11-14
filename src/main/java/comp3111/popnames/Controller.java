@@ -5,6 +5,7 @@ package comp3111.popnames;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -53,6 +54,18 @@ public class Controller {
 
     @FXML
     private Tab tabReport3;
+    
+    @FXML
+    private RadioButton toggleButtonMR3;
+    
+    @FXML
+    private RadioButton toggleButtonFR3;
+    
+    @FXML
+    private TextField textfieldendingingYearR3;
+    
+    @FXML
+    private TextField textfieldstartingYearR3;
 
     @FXML
     private ToggleGroup T111;

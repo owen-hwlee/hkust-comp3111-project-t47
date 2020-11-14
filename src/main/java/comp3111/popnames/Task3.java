@@ -12,4 +12,21 @@ public class Task3 {
 		return fr.getCSVParser(false);
 	}
 	
+	public static boolean getLargestFall(int startingYear, int endingYear)
+	{
+		Profile persons[][];
+		
+		if (startingYear < 1880 || endingYear > 2019 || startingYear >= endingYear)
+			return false;
+		
+		for (int i = startingYear; i <= endingYear; i++)
+		{
+			for (CSVRecord rec : getFileParser(i))
+			{
+				Profile a;
+			}
+		}
+		return true;
+	}
+	
 }
