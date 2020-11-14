@@ -3,6 +3,8 @@
  */
 package comp3111.popnames;
 
+import org.apache.commons.csv.CSVRecord;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -229,7 +231,39 @@ public class Controller {
      */
     @FXML
     void reporting3() {
-        textAreaConsole.setText("Task 3 not yet ready ah");
+    	
+        // Parse data from UI
+        String gender;
+        RadioButton rb = ;
+        
+        toggleButtonMR3 ? gender = "M" : "F";
+
+        int starting_year = Integer.parseInt(textfieldstartingYearR3.getText());
+        int ending_year = Integer.parseInt(textfieldendingingYearR3.getText());
+    		
+    	if (starting_year < 1880 || ending_year > 2019 || starting_year >= ending_year)
+    		textAreaConsole.setText("Invalid Input.");
+    	
+    	Profile persons[][];
+    	
+		for (int i = starting_year; i <= ending_year; i++)
+		{
+			for (CSVRecord rec : AnalyzeNames.getFileParser(i))
+			{
+				if (rec.get(1).equals(gender))
+				{
+					Profile person = new Profile(i, gender, rec.get(0));
+					
+				}
+			}
+		}
+
+        // Store into string
+        String s;
+
+        textAreaConsole.setText(s);
+    	
+        textAreaConsole.setText(s);
     }
 
     /**
