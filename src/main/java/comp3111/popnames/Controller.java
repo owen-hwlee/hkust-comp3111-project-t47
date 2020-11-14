@@ -235,8 +235,6 @@ public class Controller {
         // Parse data from UI
         String gender;
         RadioButton rb = ;
-        
-        toggleButtonMR3 ? gender = "M" : "F";
 
         int starting_year = Integer.parseInt(textfieldstartingYearR3.getText());
         int ending_year = Integer.parseInt(textfieldendingingYearR3.getText());
@@ -244,7 +242,7 @@ public class Controller {
     	if (starting_year < 1880 || ending_year > 2019 || starting_year >= ending_year)
     		textAreaConsole.setText("Invalid Input.");
     	
-    	Profile persons[][];
+    	Profile[][] persons =  new Profile[ending_year-starting_year+1][2];
     	
 		for (int i = starting_year; i <= ending_year; i++)
 		{
