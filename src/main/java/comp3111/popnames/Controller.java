@@ -43,7 +43,16 @@ public class Controller {
     private Tab tabReport1;
 
     @FXML
+    private TextField textfieldR1TopN;
+
+    @FXML
     private ToggleGroup T1;
+
+    @FXML
+    private TextField textfieldR1FirstYear;
+
+    @FXML
+    private TextField textfieldR1LastYear;
 
     @FXML
     private Tab tabReport2;
@@ -162,7 +171,30 @@ public class Controller {
      */
     @FXML
     void reporting1() {
-        textAreaConsole.setText("Task 1 not yet ready ah");
+
+        // parse data from UI
+
+        int N = Integer.parseInt(textfieldR1TopN.getText());
+
+        int first_year = Integer.parseInt(textfieldR1FirstYear.getText());
+        int last_year = Integer.parseInt(textfieldR1LastYear.getText());
+
+        // create profiles
+        /*
+        Profile[][] people = new Profile[last_year - first_year + 1][N];
+        for (int i = first_year; i <= last_year; ++i) {
+            for (int j = 0; j < N; ++j) {
+                people[i - first_year][N] = new Profile(i, j + 1, gender);
+            }
+        }
+        */
+
+        // store into string
+        String s = Integer.toString(N);
+        s += Integer.toString(first_year);
+        s += Integer.toString(last_year);
+
+        textAreaConsole.setText(s);
     }
 
 
@@ -185,6 +217,36 @@ public class Controller {
     @FXML
     void reporting3() {
         textAreaConsole.setText("Task 3 not yet ready ah");
+    }
+
+    /**
+     * Task 4: Recommendation on Names for Newborn Babies
+     * To be triggered by the "OUTPUT" button on the "Application 1" Tab
+     *
+     */
+    @FXML
+    void application1() {
+        textAreaConsole.setText("Task 4 not yet ready ah");
+    }
+
+    /**
+     * Task 5: Prediction on Names for Compatible Pairs
+     * To be triggered by the "OUTPUT" button on the "Application 2" Tab
+     *
+     */
+    @FXML
+    void application2() {
+        textAreaConsole.setText("Task 5 not yet ready ah");
+    }
+
+    /**
+     * Task 6: Prediction on Scores for Compatible Pairs
+     * To be triggered by the "OUTPUT" button on the "Application 3" Tab
+     *
+     */
+    @FXML
+    void application3() {
+        textAreaConsole.setText("Task 6 not yet ready ah");
     }
 
 
