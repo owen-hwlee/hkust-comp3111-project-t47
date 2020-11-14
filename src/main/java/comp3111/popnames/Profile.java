@@ -26,23 +26,7 @@ public class Profile {
         this.gender = gender;
         this.yearOfBirth = yearOfBirth;
         
-        // initialize freq
-        boolean found = false;
-	    int oFreq = 0;
-	    for (CSVRecord rec : getFileParser(yearOfBirth)) {
-	        if (rec.get(1).equals(gender)) {
-	            if (rec.get(0).equals(name)) {
-	            	found = true;
-	            	oFreq = Integer.parseInt(rec.get(2));
-	             	break;
-	            }
-	        }
-	    }
-	    if (found)
-	    	this.freq = oFreq;
-	    else
-	    	this.freq = -1;
-
+        this.freq = AnalyzeNames.getFreq(yearOfBirth, name, gender);
         this.rank = AnalyzeNames.getRank(yearOfBirth, name, gender);
     }
 
@@ -53,25 +37,7 @@ public class Profile {
         this.gender = gender;
         this.rank = rank;
 
-        // initialize freq
-        boolean found = false;
-	    int oFreq = 0;
-	    int currentRank = 0;
-	    for (CSVRecord rec : getFileParser(yearOfBirth)) {
-	        if (rec.get(1).equals(gender)) {
-	        	currentRank++;
-	            if (currentRank == rank) {
-	            	found = true;
-	            	oFreq = Integer.parseInt(rec.get(2));
-	             	break;
-	            }
-	        }
-	    }
-	    if (found)
-	    	this.freq = oFreq;
-	    else
-	    	this.freq = -1;
-
+        this.freq = AnalyzeNames.getFreq(yearOfBirth, rank, gender);
         this.name = AnalyzeNames.getName(yearOfBirth, rank, gender);
     }
 
