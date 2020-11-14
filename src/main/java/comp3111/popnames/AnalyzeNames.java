@@ -93,5 +93,44 @@ public class AnalyzeNames {
 	     else
 	     	return "information on the name at the specified rank is not available";
 	 }
- 
+	 
+	 public static int getFreq(int yearOfBirth, String name, String gender)
+	 {
+	     boolean found = false;
+		    int oFreq = 0;
+		    for (CSVRecord rec : getFileParser(yearOfBirth)) {
+		        if (rec.get(1).equals(gender)) {
+		            if (rec.get(0).equals(name)) {
+		            	found = true;
+		            	oFreq = Integer.parseInt(rec.get(2));
+		             	break;
+		            }
+		        }
+		    }
+		    if (found)
+		    	return oFreq;
+		    else
+		    	return -1;
+	 }
+	 
+	 public static int getFreq(int yearOfBirth, int rank, String gender)
+	 {
+         boolean found = false;
+	     int oFreq = 0;
+	     int currentRank = 0;
+	     for (CSVRecord rec : getFileParser(yearOfBirth)) {
+	         if (rec.get(1).equals(gender)) {
+	         	currentRank++;
+	             if (currentRank == rank) {
+	             	found = true;
+	             	oFreq = Integer.parseInt(rec.get(2));
+	               	break;
+	             }
+	         }
+	     }
+	     if (found)
+	     	return oFreq;
+	     else
+	     	return -1;
+	 }
 }
