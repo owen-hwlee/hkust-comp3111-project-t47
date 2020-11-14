@@ -58,7 +58,7 @@
                               <TextField layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
                               <TextField layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                               <Label layoutX="258.0" layoutY="130.0" text="to" />
-                              <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" text="REPORT (yet to be implemented)" />
+                              <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting1" text="REPORT (yet to be implemented)" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -87,7 +87,7 @@
                                     <TextField layoutX="289.0" layoutY="123.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
                                     <TextField layoutX="223.0" layoutY="123.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                                     <Label layoutX="271.0" layoutY="127.0" text="to" />
-                                    <Button layoutX="108.0" layoutY="169.0" mnemonicParsing="false" text="REPORT (yet to be implemented)" />
+                                    <Button layoutX="108.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting2" text="REPORT (yet to be implemented)" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -116,7 +116,7 @@
                                     <TextField layoutX="292.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
                                     <TextField layoutX="226.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                                     <Label layoutX="274.0" layoutY="136.0" text="to" />
-                                    <Button layoutX="112.0" layoutY="175.0" mnemonicParsing="false" text="REPORT (yet to be implemented)" />
+                                    <Button layoutX="112.0" layoutY="175.0" mnemonicParsing="false" onAction="#reporting3" text="REPORT (yet to be implemented)" />
                                  </children>
                               </AnchorPane>
                            </children>

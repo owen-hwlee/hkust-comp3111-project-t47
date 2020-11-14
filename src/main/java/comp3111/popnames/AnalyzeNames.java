@@ -50,7 +50,7 @@ public class AnalyzeNames {
 	 public static int getRank(int year, String name, String gender) {
 	     boolean found = false;
 	     int oRank = 0;
-	 	int rank = 1;
+	     int rank = 1;
 	     for (CSVRecord rec : getFileParser(year)) {
 	         // Increment rank if gender matches param
 	         if (rec.get(1).equals(gender)) {
