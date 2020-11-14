@@ -6,12 +6,16 @@ package comp3111.popnames;
 import org.apache.commons.csv.CSVRecord;
 
 import javafx.fxml.FXML;
+<<<<<<< HEAD
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+=======
+import javafx.scene.control.*;
+>>>>>>> refs/remotes/origin/master
 
 public class Controller {
 
@@ -190,7 +194,10 @@ public class Controller {
         // parse data from UI
 
         int N = Integer.parseInt(textfieldR1TopN.getText());
-
+        RadioButton rb1 = (RadioButton)(T1.getSelectedToggle());
+        String gender = rb1.getText();
+        // String gender = "Male";
+        gender = gender.substring(0,1);
         int first_year = Integer.parseInt(textfieldR1FirstYear.getText());
         int last_year = Integer.parseInt(textfieldR1LastYear.getText());
 
@@ -206,6 +213,7 @@ public class Controller {
 
         // store into string
         String s = Integer.toString(N);
+        s += gender;
         s += Integer.toString(first_year);
         s += Integer.toString(last_year);
 
