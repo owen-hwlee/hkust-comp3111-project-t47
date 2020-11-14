@@ -7,6 +7,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import java.util.*;
 
 public class Controller {
 
@@ -225,35 +226,119 @@ public class Controller {
     @FXML
     void reporting3() {
     	
-        // Parse data from UI
-        RadioButton rb1 = (RadioButton)(T11.getSelectedToggle());
-        String gender = rb1.getText();
+        // Parse Data from UI
+        RadioButton rb = (RadioButton)(T111.getSelectedToggle());
+        String gender = rb.getText();
         gender = gender.substring(0,1);
-
         int starting_year = Integer.parseInt(textfieldstartingYearR3.getText());
         int ending_year = Integer.parseInt(textfieldendingingYearR3.getText());
-    		
+    	
+        // Boundary Case
     	if (starting_year < 1880 || ending_year > 2019 || starting_year >= ending_year)
-    		textAreaConsole.setText("Invalid Input.");
-    	
-    	Profile[][] persons =  new Profile[ending_year-starting_year+1][2];
-    	
-		for (int i = starting_year; i <= ending_year; i++)
 		{
-			for (CSVRecord rec : AnalyzeNames.getFileParser(i))
-			{
-				if (rec.get(1).equals(gender))
-				{
-					Profile person = new Profile(i, gender, rec.get(0));
-					
-				}
-			}
+			textAreaConsole.setText("Invalid Input.");
+			return;
 		}
-
-        // Store into string
-        String s;
-
-        textAreaConsole.setText("dfd");
+    	
+    	// Initialize Persons Array
+    	HashMap<String, Integer> starting_year_persons = new HashMap<String, Integer>();
+    	HashMap<String, Integer> ending_year_persons = new HashMap<String, Integer>();
+    	List<String> names_appeared = new ArrayList<String>();
+    	int starting_year_lowest_rank = 1;
+    	int ending_year_lowest_rank = 1;
+    	for (CSVRecord rec : AnalyzeNames.getFileParser(starting_year))
+    	{
+    		if (rec.get(1).equals(gender))
+    		{
+    			Profile person = new Profile(starting_year, gender, rec.get(0));
+    			starting_year_persons.put(person.getName(), person.getRank());
+    			names_appeared.add(person.getName());
+    			starting_year_lowest_rank++;
+    		}
+    	}
+    	for (CSVRecord rec : AnalyzeNames.getFileParser(ending_year))
+    	{
+    		if (rec.get(1).equals(gender))
+    		{
+    			Profile person = new Profile(ending_year, gender, rec.get(0));
+    			ending_year_persons.put(person.getName(), person.getRank());
+    			if (!names_appeared.contains(person.getName()))
+    				names_appeared.add(person.getName());
+    			ending_year_lowest_rank++;
+    		}
+    	}
+    	
+    	// note: need to think about special case where no rise
+		int largest_rise = -1;
+		int largest_fall = 1;
+		String name_rise = "";
+		String name_fall = "";
+    	for (String name : names_appeared)
+    	{
+    		int starting_year_rank = starting_year_persons.containsKey(name) ? starting_year_persons.get(name) : starting_year_lowest_rank;
+    		int ending_year_rank = ending_year_persons.containsKey(name) ? ending_year_persons.get(name) : ending_year_lowest_rank;
+    		int diff = starting_year_rank - ending_year_rank;
+    		if (diff > largest_rise)
+    		{
+    			largest_rise = diff;
+    			name_rise = name;
+    		}
+    		else if (diff < largest_fall)
+    		{
+    			largest_fall = diff;
+    			name_fall = name;
+    		}
+    	}
+    	
+    	// Printing Output
+    	int rank_rise1 = starting_year_persons.containsKey(name_rise) ? starting_year_persons.get(name_rise) : starting_year_lowest_rank;
+    	int rank_rise2 = ending_year_persons.containsKey(name_rise) ? ending_year_persons.get(name_rise) : ending_year_lowest_rank;
+    	int rank_fall1 = starting_year_persons.containsKey(name_fall) ? starting_year_persons.get(name_fall) : starting_year_lowest_rank;
+    	int rank_fall2 = ending_year_persons.containsKey(name_fall) ? ending_year_persons.get(name_fall) : ending_year_lowest_rank;
+    	String year_rise1 = Integer.toString(starting_year);
+    	String year_rise2 = Integer.toString(ending_year);
+    	String year_fall1 = Integer.toString(starting_year);
+    	String year_fall2 = Integer.toString(ending_year);
+        
+        String s = name_rise + " is found to have shown the largest rise in popularity from rank " + rank_rise1;
+        s += " in year " + year_rise1 + " to rank " + rank_rise2;
+        s += " in year " + year_rise2 + ".\nOn the other hand, ";
+        s += name_fall  + " is found to have shown the largest fall in popularity from rank " + rank_fall1;
+        s += " in year " + year_fall1 + " to rank " + rank_fall2;
+        s += " in year " + year_fall2 + ".";
+    	textAreaConsole.setText(s);
+    	
+//    	List<Profile> starting_year_persons = new ArrayList<Profile>();
+//    	List<Profile> ending_year_persons = new ArrayList<Profile>();
+//    	
+//    	for (CSVRecord rec : AnalyzeNames.getFileParser(starting_year))
+//    	{
+//    		if (rec.get(1).equals(gender))
+//    		{
+//    			starting_year_persons.add(new Profile(starting_year, gender, rec.get(0)));
+//    		}
+//    	}
+//    	for (CSVRecord rec : AnalyzeNames.getFileParser(ending_year))
+//    	{
+//    		if (rec.get(1).equals(gender))
+//    			ending_year_persons.add(new Profile(ending_year, gender, rec.get(0)));
+//    	}
+    	
+//    	List<List<Profile>> persons = new ArrayList<List<Profile>>();;
+//		for (int i = starting_year; i <= ending_year; i++)
+//		{
+//			List<Profile> person = new ArrayList<Profile>();
+//			for (CSVRecord rec : AnalyzeNames.getFileParser(i))
+//			{
+//				if (rec.get(1).equals(gender))
+//				{
+//					person.add(new Profile(i, gender, rec.get(0)));
+//				}
+//			}
+//			persons.add(person);
+//		}
+		
+//		if (Arrays.asList(array).contains("whatever"))
     }
 
     /**
