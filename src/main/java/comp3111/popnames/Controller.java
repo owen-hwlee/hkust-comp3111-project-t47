@@ -304,7 +304,7 @@ public class Controller {
         
         String s = name_rise + " is found to have shown the largest rise in popularity from rank " + rank_rise1;
         s += " in year " + year_rise1 + " to rank " + rank_rise2;
-        s += " in year " + year_rise2 + ".\nOn the other hand, ";
+        s += " in year " + year_rise2 + ".\nOn the other hand,\n";
         s += name_fall  + " is found to have shown the largest fall in popularity from rank " + rank_fall1;
         s += " in year " + year_fall1 + " to rank " + rank_fall2;
         s += " in year " + year_fall2 + ".";
