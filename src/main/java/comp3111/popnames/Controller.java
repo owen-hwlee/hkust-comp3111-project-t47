@@ -55,7 +55,7 @@ public class Controller {
     @FXML
     private Tab tabReport2;
     @FXML
-    private TextField textfieldR2TopN;
+    private TextField textfieldR2Name;
     
     @FXML
     private TextField textfieldR2FirstYear;
@@ -221,7 +221,7 @@ public class Controller {
      */
     @FXML
     void reporting2() {
-    	String N = textfieldR2TopN.getText();
+    	String N = textfieldR2Name.getText();
         RadioButton rb2 = (RadioButton)(T11.getSelectedToggle());
         String gender = rb2.getText();
         
