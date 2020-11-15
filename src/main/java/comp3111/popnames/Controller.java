@@ -42,7 +42,7 @@ public class Controller {
 
     @FXML
     private TextField textfieldR1TopN;
-
+    
     @FXML
     private ToggleGroup T1;
 
@@ -54,7 +54,15 @@ public class Controller {
 
     @FXML
     private Tab tabReport2;
+    @FXML
+    private TextField textfieldR2Name;
+    
+    @FXML
+    private TextField textfieldR2FirstYear;
 
+    @FXML
+    private TextField textfieldR2LastYear;
+    
     @FXML
     private ToggleGroup T11;
 
@@ -213,7 +221,20 @@ public class Controller {
      */
     @FXML
     void reporting2() {
-        textAreaConsole.setText("Task 2 not yet ready ah");
+    	String N = textfieldR2Name.getText();
+        RadioButton rb2 = (RadioButton)(T11.getSelectedToggle());
+        String gender = rb2.getText();
+        
+        gender = gender.substring(0,1);
+        int first_year = Integer.parseInt(textfieldR2FirstYear.getText());
+        int last_year = Integer.parseInt(textfieldR2LastYear.getText());
+
+        String s = N;
+        s += gender;
+        s += Integer.toString(first_year);
+        s += Integer.toString(last_year);
+
+        textAreaConsole.setText(s);
     }
 
 

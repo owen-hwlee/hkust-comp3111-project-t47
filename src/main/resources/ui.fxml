@@ -71,22 +71,19 @@
                                  <children>
                                     <TextArea layoutX="109.0" layoutY="33.0" prefHeight="42.0" prefWidth="335.0" text="Generate a brief report in response to the queries on the popularity of a particular name over a given period." wrapText="true" />
                                     <Label layoutX="109.0" layoutY="93.0" text="Name" />
-                                    <TextField layoutX="159.0" layoutY="88.0" prefHeight="26.0" prefWidth="88.0" text="David" />
+                                    <TextField fx:id="textfieldR2Name" layoutX="159.0" layoutY="88.0" prefHeight="26.0" prefWidth="88.0" />
                                     <Label layoutX="277.0" layoutY="93.0" text="Gender: " />
                                     <RadioButton layoutX="332.0" layoutY="93.0" mnemonicParsing="false" selected="true" text="Male">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="T11" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton layoutX="384.0" layoutY="93.0" mnemonicParsing="false" text="Female">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="T11" />
-                                       </toggleGroup>
-                                    </RadioButton>
+                                    
+                                    <RadioButton layoutX="394.0" layoutY="93.0" mnemonicParsing="false" text="Female" toggleGroup="$T11" />
                                     <Label layoutX="109.0" layoutY="129.0" text="Period (1880 - 2019): " />
-                                    <TextField layoutX="289.0" layoutY="123.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
-                                    <TextField layoutX="223.0" layoutY="123.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
-                                    <Label layoutX="271.0" layoutY="127.0" text="to" />
+                                    <TextField fx:id="textfieldR2LastYear" layoutX="310.0" layoutY="123.0" prefHeight="26.0" prefWidth="60.0"  />
+                                    <TextField fx:id="textfieldR2FirstYear" layoutX="223.0" layoutY="123.0" prefHeight="26.0" prefWidth="60.0"  />
+                                    <Label layoutX="290.0" layoutY="127.0" text="to" />
                                     <Button layoutX="108.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting2" text="REPORT (yet to be implemented)" />
                                  </children>
                               </AnchorPane>
