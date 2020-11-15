@@ -195,21 +195,47 @@ public class Controller {
         int last_year = Integer.parseInt(textfieldR1LastYear.getText());
 
         // create profiles
-        /*
+
         Profile[][] people = new Profile[last_year - first_year + 1][N];
         for (int i = first_year; i <= last_year; ++i) {
-            for (int j = 0; j < N; ++j) {
-                people[i - first_year][N] = new Profile(i, j + 1, gender);
+            for (int j = 1; j <= N; ++j) {
+                people[i - first_year][j - 1] = new Profile(i, gender, j);
             }
         }
-        */
 
         // store into string
-        String s = Integer.toString(N);
-        s += gender;
+        String s = "This is a report detailing top ";
+        s += Integer.toString(N);
+        s += " ";
+        if (gender.equals("M")) s += "male";
+        else s += "female";
+        s += " names of birth from ";
         s += Integer.toString(first_year);
+        s += " to ";
         s += Integer.toString(last_year);
+        s += ".\n\n";
 
+
+        // Integer.toString(N);
+        // s += gender;
+        // s += Integer.toString(first_year);
+        // s += Integer.toString(last_year);
+
+        for (int i = first_year; i <= last_year; ++i) {
+            s += "For year ";
+            s += Integer.toString(i);
+            s += ":\n";
+            for (int j = 1; j <= N; ++j) {
+                s += Integer.toString(j);
+                s += ".\tName: ";
+                s += String.format("%1$-15s", people[i - first_year][j - 1].getName());
+                s += "Frequency: ";
+                s += Integer.toString(people[i - first_year][j - 1].getFreq());
+                s += "\n";
+                // s += Boolean.toString(people[i - first_year][j - 1].getName().equals("Emma"));
+            }
+            s += "\n";
+        }
         textAreaConsole.setText(s);
     }
 
