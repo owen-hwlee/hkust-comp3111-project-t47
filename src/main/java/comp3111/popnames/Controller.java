@@ -280,20 +280,45 @@ public class Controller {
     	
     	String name_rise = "";
     	String name_fall = "";
-    	int largest_rise = 1;
-    	int largest_fall = -1;
     	int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
+    	int year_rise1 = -1, year_rise2 = -1, year_fall1 = -1, year_fall2 = -1;
     	
+    	int largest_rise = -1;
+    	int largest_fall = 1;
+    	int year_lowest, year_largest, rank1, rank2, diff;
     	
-    	for (String names : names_appeared)
+    	for (String name : names_appeared)
     	{
-    		int rank1, rank2, diff;
-    		if (lowest_year_persons.get(names) < largest_year_persons.get(names))
+    		year_lowest = lowest_year_persons.get(name);
+    		year_largest = largest_year_persons.get(name);
+    		
+    		if (year_lowest > year_largest)
     		{
-    			rank1 = lowest_rank_persons.get(names);
-    			rank2 = largest_rank_persons.get(names);
-    			diff = rank2 - rank1;
-    			if (diff > largest_fall)
+    			rank1 = largest_rank_persons.get(name);
+    			rank2 = lowest_rank_persons.get(name);
+    			diff = rank1 - rank2;
+    			if (diff > largest_rise)
+    			{
+    				name_rise = name;
+    				rank_rise1 = rank1;
+    				rank_rise2 = rank2;
+    				year_rise1 = year_largest;
+    				year_rise2 = year_lowest;
+    			}
+    		}
+    		else if (year_lowest < year_largest)
+    		{
+    			rank1 = lowest_rank_persons.get(name);
+    			rank2 = largest_rank_persons.get(name);
+    			diff = rank1 - rank2;
+    			if (diff < largest_fall)
+    			{
+    				name_fall = name;
+    				rank_fall1 = rank1;
+    				rank_fall2 = rank2;
+    				year_fall1 = year_lowest;
+    				year_fall2 = year_largest;
+    			}
     		}
     	}
     	
