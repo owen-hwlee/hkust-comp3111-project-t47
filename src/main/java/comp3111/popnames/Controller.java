@@ -239,12 +239,13 @@ public class Controller {
 			return;
 		}
     	
-    	// Initialize persons HashMap && names_appeared List
+    	// Initialize four HashMap && names_appeared List
     	Map<String, Integer> lowest_rank_persons = new HashMap<String, Integer>();
     	Map<String, Integer> largest_rank_persons = new HashMap<String, Integer>();
     	Map<String, Integer> lowest_year_persons = new HashMap<String, Integer>();
     	Map<String, Integer> largest_year_persons = new HashMap<String, Integer>();
     	List<String> names_appeared = new ArrayList<String>();
+    	
     	for (int i = starting_year; i <= ending_year; i++)
     	{
     		int rank = 1;
@@ -278,6 +279,7 @@ public class Controller {
     		}
     	}
     	
+    	// Starting the comparisons of all names
     	String name_rise = "";
     	String name_fall = "";
     	int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
@@ -292,6 +294,7 @@ public class Controller {
     		year_lowest = lowest_year_persons.get(name);
     		year_largest = largest_year_persons.get(name);
     		
+    		// largest_rise case
     		if (year_lowest > year_largest)
     		{
     			rank1 = largest_rank_persons.get(name);
@@ -299,6 +302,7 @@ public class Controller {
     			diff = rank1 - rank2;
     			if (diff > largest_rise)
     			{
+    				largest_rise = diff;
     				name_rise = name;
     				rank_rise1 = rank1;
     				rank_rise2 = rank2;
@@ -306,6 +310,7 @@ public class Controller {
     				year_rise2 = year_lowest;
     			}
     		}
+    		// largest_fall case
     		else if (year_lowest < year_largest)
     		{
     			rank1 = lowest_rank_persons.get(name);
@@ -313,6 +318,7 @@ public class Controller {
     			diff = rank1 - rank2;
     			if (diff < largest_fall)
     			{
+    				largest_fall = diff;
     				name_fall = name;
     				rank_fall1 = rank1;
     				rank_fall2 = rank2;
