@@ -239,6 +239,7 @@ public class Controller {
 			return;
 		}
     	
+    	// initialize a map and a list
     	Map<String, Integer> map = new HashMap<String, Integer>();
     	List<String> names_appeared = new ArrayList<String>();
     	for (int i = starting_year; i <= ending_year; i++)
