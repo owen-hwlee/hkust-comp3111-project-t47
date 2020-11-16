@@ -239,7 +239,6 @@ public class Controller {
 			return;
 		}
     	
-    	// map: name&year as key and rank as value
     	Map<String, Integer> map = new HashMap<String, Integer>();
     	List<String> names_appeared = new ArrayList<String>();
     	for (int i = starting_year; i <= ending_year; i++)
@@ -321,8 +320,6 @@ public class Controller {
 	    	}
     	}
     	
-    	
-    	// Initialize four HashMap && names_appeared List
 //    	Map<String, Integer> lowest_rank_persons = new HashMap<String, Integer>();
 //    	Map<String, Integer> largest_rank_persons = new HashMap<String, Integer>();
 //    	Map<String, Integer> lowest_year_persons = new HashMap<String, Integer>();
@@ -361,13 +358,12 @@ public class Controller {
 //    			}
 //    		}
 //    	}
-    	
-//    	// Starting the comparisons of all names
+//    	
 //    	String name_rise = "";
 //    	String name_fall = "";
 //    	int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
 //    	int year_rise1 = -1, year_rise2 = -1, year_fall1 = -1, year_fall2 = -1;
-    	
+//    	
 //    	int largest_rise = -1;
 //    	int largest_fall = 1;
 //    	int year_lowest, year_largest, rank1, rank2, diff;
@@ -410,63 +406,6 @@ public class Controller {
 //    			}
 //    		}
 //    	}
-    	
-//    	for (CSVRecord rec : AnalyzeNames.getFileParser(starting_year))
-//    	{
-//    		if (rec.get(1).equals(gender))
-//    		{
-//    			String name = rec.get(0);
-//    			lowest_persons.put(name, starting_year_rank);
-//    			names_appeared.add(name);
-//    			starting_year_rank++;
-//    		}
-//    	}
-//    	for (CSVRecord rec : AnalyzeNames.getFileParser(ending_year))
-//    	{
-//    		if (rec.get(1).equals(gender))
-//    		{
-//    			String name = rec.get(0);
-//    			largest_persons.put(name, ending_year_rank);
-//    			if (!names_appeared.contains(name))
-//    				names_appeared.add(name);
-//    			ending_year_rank++;
-//    		}
-//    	}
-//    	
-//    	// note: need to think about special case where no rise
-//    	// Identifying the names with largest rise/fall
-//		int largest_rise = -1;
-//		int largest_fall = 1;
-//		String name_rise = "";
-//		String name_fall = "";
-//		int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
-//		int rank1, rank2;
-//    	for (String name : names_appeared)
-//    	{
-//    		rank1 = lowest_persons.containsKey(name) ? lowest_persons.get(name) : starting_year_rank;
-//    		rank2 = largest_persons.containsKey(name) ? largest_persons.get(name) : ending_year_rank;
-//    		int diff = rank1 - rank2;
-//    		if (diff > largest_rise)
-//    		{
-//    			largest_rise = diff;
-//    			name_rise = name;
-//    			rank_rise1 = rank1;
-//    			rank_rise2 = rank2;
-//    		}
-//    		else if (diff < largest_fall)
-//    		{
-//    			largest_fall = diff;
-//    			name_fall = name;
-//    			rank_fall1 = rank1;
-//    			rank_fall2 = rank2;
-//    		}
-//    	}
-//    	
-//    	// Printing Output
-//    	String year_rise1 = Integer.toString(starting_year);
-//    	String year_rise2 = Integer.toString(ending_year);
-//    	String year_fall1 = Integer.toString(starting_year);
-//    	String year_fall2 = Integer.toString(ending_year);
         
         String s = name_rise + " is found to have shown the largest rise in popularity from rank " + rank_rise1;
         s += " in year " + year_rise1 + " to rank " + rank_rise2;
