@@ -186,26 +186,28 @@ public class Controller {
 
         // parse data from UI
 
-        int N = Integer.parseInt(textfieldR1TopN.getText());
+        int n = Integer.parseInt(textfieldR1TopN.getText());
         RadioButton rb1 = (RadioButton)(T1.getSelectedToggle());
-        String gender = rb1.getText();
+        String g = rb1.getText();
         // String gender = "Male";
-        gender = gender.substring(0,1);
+        String gender = g.substring(0,1);
         int first_year = Integer.parseInt(textfieldR1FirstYear.getText());
         int last_year = Integer.parseInt(textfieldR1LastYear.getText());
 
         // create profiles
 
-        Profile[][] people = new Profile[last_year - first_year + 1][N];
+        Profile[][] people = new Profile[last_year - first_year + 1][n];
         for (int i = first_year; i <= last_year; ++i) {
-            for (int j = 1; j <= N; ++j) {
+            for (int j = 1; j <= n; ++j) {
                 people[i - first_year][j - 1] = new Profile(i, gender, j);
             }
         }
 
         // store into string
+
+        /*
         String s = "This is a report detailing top ";
-        s += Integer.toString(N);
+        s += Integer.toString(n);
         s += " ";
         if (gender.equals("M")) s += "male";
         else s += "female";
@@ -214,18 +216,58 @@ public class Controller {
         s += " to ";
         s += Integer.toString(last_year);
         s += ".\n\n";
+        */
 
+        // summary of results
 
-        // Integer.toString(N);
-        // s += gender;
-        // s += Integer.toString(first_year);
-        // s += Integer.toString(last_year);
+        int k = -1;
 
+        String[] names = new String[last_year - first_year + 1];
+        int[] freq = new int[names.length];
+        for (int i = first_year; i <= last_year; ++i) {
+            for (int j = 0; j < freq.length; ++j) {
+                if (people[i - first_year][0].getName().equals(names[j])) {
+                    ++freq[j];
+                    break;
+                }
+                else if (freq[j] == 0) {
+                    freq[j] = 1;
+                    names[j] = people[i - first_year][0].getName();
+                    break;
+                }
+            }
+        }
+        int index = 0;      // find index and values of the most frequent top spot name
+        for (int i = 0; i < freq.length; ++i) {
+            if (k < freq[i]) {
+                k = freq[i];
+                index = i;
+            }
+            else if (freq[i] == 0) {
+                break;
+            }
+        }
+
+        /*
+        for (int i = 0; i < freq.length; ++i) {
+            System.out.print(names[i]);
+            System.out.print(freq[i]);
+        }
+        */
+
+        String s = String.format("Over the period %d to %d, %s for %s has hold the top spot most often for a total of %d times.\n\n",
+                                    first_year, last_year, names[index], gender.equals("M")? "males": "females", k);
+
+        // TODO: consider case where there are more than one most frequent item
+
+        // detailed results
+
+        /*
         for (int i = first_year; i <= last_year; ++i) {
             s += "For year ";
             s += Integer.toString(i);
             s += ":\n";
-            for (int j = 1; j <= N; ++j) {
+            for (int j = 1; j <= n; ++j) {
                 s += Integer.toString(j);
                 s += ".\tName: ";
                 s += String.format("%1$-15s", people[i - first_year][j - 1].getName());
@@ -236,6 +278,23 @@ public class Controller {
             }
             s += "\n";
         }
+        */
+
+        s += "Detailed results: (in table form)\nYear ";
+        for (int i = 1; i <= n; ++i) {
+            s += String.format("| Top %1$-7d", i);
+        }
+        for (int i = first_year; i <= last_year; ++i) {
+            s += "\n-----";
+            for (int j = 0; j < n; ++j) {
+                s += "+------------";
+            }
+            s += String.format("\n%d ", i);
+            for (int j = 0; j < n; ++j) {
+                s += String.format("| %1$-11s", people[i - first_year][j].getName());
+            }
+        }
+
         textAreaConsole.setText(s);
     }
 
