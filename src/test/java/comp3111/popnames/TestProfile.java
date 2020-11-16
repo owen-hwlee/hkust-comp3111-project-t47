@@ -7,44 +7,16 @@ import static org.junit.Assert.*;
 public class TestProfile {
 	
 	@Test
-	public void testgetRankM1941()
+	public void testA()
 	{
-		Profile a = new Profile(1941, "M", "Macarthur");
-		assertTrue(a.getRank() == 3816);
+		Profile a = new Profile(2008, "F", "Oaklynn");
+		assertTrue(a.getRank() == 19673);
 	}
 	
 	@Test
-	public void testgetRankM1945()
+	public void testB()
 	{
-		Profile a = new Profile(1941, "M", "Macarthur");
-		assertTrue(a.getRank() == 1115);
-	}
-	
-	@Test
-	public void testgetRankF1941()
-	{
-		Profile a = new Profile(1941, "M", "Sally");
-		assertTrue(a.getRank() == 1552);
-	}
-	
-	@Test
-	public void testgetRankF1945()
-	{
-		Profile a = new Profile(1941, "M", "Sally");
-		assertTrue(a.getRank() == -1);
-	}
-	
-	@Test
-	public void testgetFreqWithName()
-	{
-		Profile a = new Profile(1941, "F", "Dera");
-		assertTrue(a.getFreq() == 5);
-	}
-	
-	@Test
-	public void testgetFreqWithRank()
-	{
-		Profile a = new Profile(1880, "F", 2);
-		assertTrue(a.getFreq() == 2604);
+		Profile a = new Profile(1950, "F", "Velma");
+		assertTrue(a.getRank() == 267);
 	}
 }

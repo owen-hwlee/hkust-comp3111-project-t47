@@ -239,13 +239,9 @@ public class Controller {
 			return;
 		}
     	
-    	// Initialize four HashMap && names_appeared List
-    	Map<String, Integer> lowest_rank_persons = new HashMap<String, Integer>();
-    	Map<String, Integer> largest_rank_persons = new HashMap<String, Integer>();
-    	Map<String, Integer> lowest_year_persons = new HashMap<String, Integer>();
-    	Map<String, Integer> largest_year_persons = new HashMap<String, Integer>();
+    	// map: name&year as key and rank as value
+    	Map<String, Integer> map = new HashMap<String, Integer>();
     	List<String> names_appeared = new ArrayList<String>();
-    	
     	for (int i = starting_year; i <= ending_year; i++)
     	{
     		int rank = 1;
@@ -254,79 +250,166 @@ public class Controller {
     			if (rec.get(1).equals(gender))
     			{
     				if (!names_appeared.contains(rec.get(0)))
-    				{
-    					lowest_rank_persons.put(rec.get(0), rank);
-    					lowest_year_persons.put(rec.get(0), i);
-    					largest_rank_persons.put(rec.get(0), rank);
-    					largest_year_persons.put(rec.get(0), i);
     					names_appeared.add(rec.get(0));
-    				}
-    				else
-    				{
-    					if (rank < lowest_rank_persons.get(rec.get(0)))
-    					{
-    						lowest_rank_persons.put(rec.get(0), rank);
-    						lowest_year_persons.put(rec.get(0), i);
-    					}
-    					else if (rank > largest_rank_persons.get(rec.get(0)))
-    					{
-        					largest_rank_persons.put(rec.get(0), rank);
-        					largest_year_persons.put(rec.get(0), i);
-    					}
-    				}
+    				String key = rec.get(0) + "#" + Integer.toString(i);
+    				map.put(key, rank);
     				rank++;
     			}
     		}
     	}
     	
-    	// Starting the comparisons of all names
+    	// finding largest_rise and largest_fall
     	String name_rise = "";
     	String name_fall = "";
     	int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
     	int year_rise1 = -1, year_rise2 = -1, year_fall1 = -1, year_fall2 = -1;
     	
-    	int largest_rise = -1;
-    	int largest_fall = 1;
-    	int year_lowest, year_largest, rank1, rank2, diff;
-    	
+    	int max_diff = -1;					// finding largest_fall in rank
+    	int min_diff = 1;					// finding largest_rise in rank
     	for (String name : names_appeared)
     	{
-    		year_lowest = lowest_year_persons.get(name);
-    		year_largest = largest_year_persons.get(name);
+    		int p = starting_year;
+    		String key = name + "#" + Integer.toString(p);
+    		while (!map.containsKey(key) && p <= ending_year)
+    		{
+    			p++;
+    			key = name + "#" + Integer.toString(p);
+    		}
+    		int min_rank = map.get(key);	// largest_fall
+    		int min_index = p;				// largest_fall
+    		int max_rank = map.get(key);	// largest_rise
+    		int max_index = p;				// largest_rise
     		
-    		// largest_rise case
-    		if (year_lowest > year_largest)
-    		{
-    			rank1 = largest_rank_persons.get(name);
-    			rank2 = lowest_rank_persons.get(name);
-    			diff = rank1 - rank2;
-    			if (diff > largest_rise)
-    			{
-    				largest_rise = diff;
-    				name_rise = name;
-    				rank_rise1 = rank1;
-    				rank_rise2 = rank2;
-    				year_rise1 = year_largest;
-    				year_rise2 = year_lowest;
-    			}
-    		}
-    		// largest_fall case
-    		else if (year_lowest < year_largest)
-    		{
-    			rank1 = lowest_rank_persons.get(name);
-    			rank2 = largest_rank_persons.get(name);
-    			diff = rank1 - rank2;
-    			if (diff < largest_fall)
-    			{
-    				largest_fall = diff;
-    				name_fall = name;
-    				rank_fall1 = rank1;
-    				rank_fall2 = rank2;
-    				year_fall1 = year_lowest;
-    				year_fall2 = year_largest;
-    			}
-    		}
+	    	for (int i = p + 1; i <= ending_year; i++)
+	    	{
+	    		key = name + "#" + Integer.toString(i);
+	    		if (!map.containsKey(key))
+	    			continue;
+	    		int curr_rank = map.get(key);
+	    		
+	    		// finding largest_fall in rank
+	    		if (curr_rank - min_rank > max_diff)
+	    		{
+	    			max_diff = curr_rank - min_rank;
+	    			name_fall = name;
+	    			year_fall1 = min_index;
+	    			year_fall2 = i;
+	    			rank_fall1 = map.get(name+"#"+min_index);
+	    			rank_fall2 = curr_rank;
+	    		}
+	    		if (curr_rank < min_rank)
+	    		{
+	    			min_rank = curr_rank;
+	    			min_index = i;
+	    		}
+	    		
+	    		// finding largest_rise in rank
+	    		if (curr_rank - max_rank < min_diff)
+	    		{
+	    			min_diff = curr_rank - max_rank;
+	    			name_rise = name;
+	    			year_rise1 = max_index;
+	    			year_rise2 = i;
+	    			rank_rise1 = map.get(name+"#"+max_index);
+	    			rank_rise2 = curr_rank;
+	    		}
+	    		if (curr_rank > max_rank)
+	    		{
+	    			max_rank = curr_rank;
+	    			max_index = i;
+	    		}
+	    	}
     	}
+    	
+    	
+    	// Initialize four HashMap && names_appeared List
+//    	Map<String, Integer> lowest_rank_persons = new HashMap<String, Integer>();
+//    	Map<String, Integer> largest_rank_persons = new HashMap<String, Integer>();
+//    	Map<String, Integer> lowest_year_persons = new HashMap<String, Integer>();
+//    	Map<String, Integer> largest_year_persons = new HashMap<String, Integer>();
+//    	List<String> names_appeared = new ArrayList<String>();
+//    	
+//    	for (int i = starting_year; i <= ending_year; i++)
+//    	{
+//    		int rank = 1;
+//    		for (CSVRecord rec : AnalyzeNames.getFileParser(i))
+//    		{
+//    			if (rec.get(1).equals(gender))
+//    			{
+//    				if (!names_appeared.contains(rec.get(0)))
+//    				{
+//    					lowest_rank_persons.put(rec.get(0), rank);
+//    					lowest_year_persons.put(rec.get(0), i);
+//    					largest_rank_persons.put(rec.get(0), rank);
+//    					largest_year_persons.put(rec.get(0), i);
+//    					names_appeared.add(rec.get(0));
+//    				}
+//    				else
+//    				{
+//    					if (rank < lowest_rank_persons.get(rec.get(0)))
+//    					{
+//    						lowest_rank_persons.put(rec.get(0), rank);
+//    						lowest_year_persons.put(rec.get(0), i);
+//    					}
+//    					else if (rank > largest_rank_persons.get(rec.get(0)))
+//    					{
+//        					largest_rank_persons.put(rec.get(0), rank);
+//        					largest_year_persons.put(rec.get(0), i);
+//    					}
+//    				}
+//    				rank++;
+//    			}
+//    		}
+//    	}
+    	
+//    	// Starting the comparisons of all names
+//    	String name_rise = "";
+//    	String name_fall = "";
+//    	int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
+//    	int year_rise1 = -1, year_rise2 = -1, year_fall1 = -1, year_fall2 = -1;
+    	
+//    	int largest_rise = -1;
+//    	int largest_fall = 1;
+//    	int year_lowest, year_largest, rank1, rank2, diff;
+//    	
+//    	for (String name : names_appeared)
+//    	{
+//    		year_lowest = lowest_year_persons.get(name);
+//    		year_largest = largest_year_persons.get(name);
+//    		
+//    		// largest_rise case
+//    		if (year_lowest > year_largest)
+//    		{
+//    			rank1 = largest_rank_persons.get(name);
+//    			rank2 = lowest_rank_persons.get(name);
+//    			diff = rank1 - rank2;
+//    			if (diff > largest_rise)
+//    			{
+//    				largest_rise = diff;
+//    				name_rise = name;
+//    				rank_rise1 = rank1;
+//    				rank_rise2 = rank2;
+//    				year_rise1 = year_largest;
+//    				year_rise2 = year_lowest;
+//    			}
+//    		}
+//    		// largest_fall case
+//    		else if (year_lowest < year_largest)
+//    		{
+//    			rank1 = lowest_rank_persons.get(name);
+//    			rank2 = largest_rank_persons.get(name);
+//    			diff = rank1 - rank2;
+//    			if (diff < largest_fall)
+//    			{
+//    				largest_fall = diff;
+//    				name_fall = name;
+//    				rank_fall1 = rank1;
+//    				rank_fall2 = rank2;
+//    				year_fall1 = year_lowest;
+//    				year_fall2 = year_largest;
+//    			}
+//    		}
+//    	}
     	
 //    	for (CSVRecord rec : AnalyzeNames.getFileParser(starting_year))
 //    	{
