@@ -133,4 +133,31 @@ public class AnalyzeNames {
 	     else
 	     	return -1;
 	 }
+
+	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB) {
+		 // overloaded function: set vintageYear = 2019 by default
+		 return NK_T4(dadName, momName, dadYOB, momYOB, 2019);
+	 }
+
+	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB, int vintageYear) {
+		 String[] kidNames = new String[2];		// kidNames[0] = boyName, kidNames[1] = girlName
+		 // TODO
+
+		 return kidNames;
+	 }
+
+	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, boolean iPreference) {
+		 String oName = "";
+		 // TODO
+
+		 return oName;
+	 }
+
+	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, boolean iPreference) {
+		 int oScore = -1;
+		 // TODO
+
+		 return oScore;
+	 }
+
 }

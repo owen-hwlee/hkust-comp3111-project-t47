@@ -59,7 +59,7 @@
                               <TextField fx:id="textfieldR1LastYear" layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
                               <TextField fx:id="textfieldR1FirstYear" layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                               <Label layoutX="258.0" layoutY="130.0" text="to" />
-                              <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting1" text="REPORT (yet to be implemented)" />
+                              <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting1" text="REPORT" />
                            </children>
                         </AnchorPane>
                     </content>
