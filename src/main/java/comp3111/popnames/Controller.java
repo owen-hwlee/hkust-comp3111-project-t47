@@ -417,6 +417,8 @@ public class Controller {
      */
     @FXML
     void application1() {
+        // set vintageYear to 2019 if no input
+
         textAreaConsole.setText("Task 4 not yet ready ah");
     }
 

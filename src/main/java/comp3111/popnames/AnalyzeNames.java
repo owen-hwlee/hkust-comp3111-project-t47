@@ -134,10 +134,12 @@ public class AnalyzeNames {
 	     	return -1;
 	 }
 
+	 /*
 	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB) {
 		 // overloaded function: set vintageYear = 2019 by default
 		 return NK_T4(dadName, momName, dadYOB, momYOB, 2019);
 	 }
+	 */
 
 	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB, int vintageYear) {
 		 String[] kidNames = new String[2];		// kidNames[0] = boyName, kidNames[1] = girlName
