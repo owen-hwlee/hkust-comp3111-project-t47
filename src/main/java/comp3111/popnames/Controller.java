@@ -418,6 +418,18 @@ public class Controller {
     @FXML
     void application1() {
         // set vintageYear to 2019 if no input
+        String dadName = textfieldA1dadName.getText();
+        String momName = textfieldA1momName.getText();
+        int dadYOB = Integer.parseInt(textfieldA1dadYOB.getText());
+        int momYOB = Integer.parseInt(textfieldA1momYOB.getText());
+        int vintageYear = 2019;
+        if (!textfieldA1vintageYear.getText().equals("")){
+            vintageYear = Integer.parseInt(textfieldA1vintageYear.getText());
+        }
+
+        String[] kidNames = AnalyzeNames.NK_T4(dadName, momName, dadYOB, momYOB, vintageYear);
+
+        // TODO
 
         textAreaConsole.setText("Task 4 not yet ready ah");
     }
@@ -429,6 +441,19 @@ public class Controller {
      */
     @FXML
     void application2() {
+        String iName = textfieldA2iName.getText();
+        int iYOB = Integer.parseInt(textfieldA2iYOB.getText());
+        RadioButton rb5 = (RadioButton)(T5_1.getSelectedToggle());
+        String iGender = rb5.getText().substring(0, 1);
+        rb5 = (RadioButton)(T5_2.getSelectedToggle());
+        String iGenderMate = rb5.getText().substring(0, 1);
+        rb5 = (RadioButton)(T5_3.getSelectedToggle());
+        String iPreference = rb5.getText();
+
+        String oName = AnalyzeNames.NK_T5(iName, iGender, iYOB, iGenderMate, iPreference);
+
+        // TODO
+
         textAreaConsole.setText("Task 5 not yet ready ah");
     }
 
@@ -439,6 +464,20 @@ public class Controller {
      */
     @FXML
     void application3() {
+        String iName = textfieldA3iName.getText();
+        int iYOB = Integer.parseInt(textfieldA3iYOB.getText());
+        RadioButton rb6 = (RadioButton)(T6_1.getSelectedToggle());
+        String iGender = rb6.getText().substring(0, 1);
+        String iNameMate = textfieldA3iNameMate.getText();
+        rb6 = (RadioButton)(T6_2.getSelectedToggle());
+        String iGenderMate = rb6.getText().substring(0, 1);
+        rb6 = (RadioButton)(T6_3.getSelectedToggle());
+        String iPreference = rb6.getText();
+
+        int oScore = AnalyzeNames.NK_T6(iName, iGender, iYOB, iNameMate, iGenderMate, iPreference);
+
+        // TODO
+
         textAreaConsole.setText("Task 6 not yet ready ah");
     }
 

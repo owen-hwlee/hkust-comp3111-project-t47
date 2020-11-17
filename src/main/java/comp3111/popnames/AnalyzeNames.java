@@ -148,14 +148,14 @@ public class AnalyzeNames {
 		 return kidNames;
 	 }
 
-	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, boolean iPreference) {
+	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
 		 String oName = "";
 		 // TODO
 
 		 return oName;
 	 }
 
-	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, boolean iPreference) {
+	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, String iPreference) {
 		 int oScore = -1;
 		 // TODO
 
