@@ -82,10 +82,58 @@ public class Controller {
     private Tab tabApp1;
 
     @FXML
+    private TextField textfieldA1dadName;
+
+    @FXML
+    private TextField textfieldA1momName;
+
+    @FXML
+    private TextField textfieldA1dadYOB;
+
+    @FXML
+    private TextField textfieldA1momYOB;
+
+    @FXML
+    private TextField textfieldA1vintageYear;
+
+    @FXML
     private Tab tabApp2;
 
     @FXML
+    private TextField textfieldA2iName;
+
+    @FXML
+    private TextField textfieldA2iYOB;
+
+    @FXML
+    private ToggleGroup T5_1;
+
+    @FXML
+    private ToggleGroup T5_2;
+
+    @FXML
+    private ToggleGroup T5_3;
+
+    @FXML
     private Tab tabApp3;
+
+    @FXML
+    private TextField textfieldA3iName;
+
+    @FXML
+    private TextField textfieldA3iYOB;
+
+    @FXML
+    private ToggleGroup T6_1;
+
+    @FXML
+    private TextField textfieldA3iNameMate;
+
+    @FXML
+    private ToggleGroup T6_2;
+
+    @FXML
+    private ToggleGroup T6_3;
 
     @FXML
     private TextArea textAreaConsole;
@@ -330,7 +378,7 @@ public class Controller {
      */
     @FXML
     void reporting3() {
-    	
+
         // Parse data from UI
         RadioButton rb1 = (RadioButton)(T11.getSelectedToggle());
         String gender = rb1.getText();
