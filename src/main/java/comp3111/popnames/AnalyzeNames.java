@@ -143,7 +143,17 @@ public class AnalyzeNames {
 
 	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB, int vintageYear) {
 		 String[] kidNames = new String[2];		// kidNames[0] = boyName, kidNames[1] = girlName
-		 // TODO
+
+		 int dadRank = getRank(dadYOB, dadName, "M");
+		 if (dadRank == -1) {
+		 	dadRank = 1;
+		 }
+		 int momRank = getRank(momYOB, momName, "F");
+		 if (momRank == -1) {
+		 	momRank = 1;
+		 }
+		 kidNames[0] = getName(vintageYear, dadRank, "M");
+		 kidNames[1] = getName(vintageYear, momRank, "F");
 
 		 return kidNames;
 	 }
