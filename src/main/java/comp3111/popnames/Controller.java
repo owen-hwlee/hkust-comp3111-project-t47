@@ -74,10 +74,10 @@ public class Controller {
     private ToggleGroup T111;
     
     @FXML
-    private TextField textfieldendingingYearR3;
+    private TextField y1R3;
     
     @FXML
-    private TextField textfieldstartingYearR3;
+    private TextField y2R3;
 
     @FXML
     private Tab tabApp1;
@@ -384,8 +384,8 @@ public class Controller {
         String gender = rb.getText();
 
         gender = gender.substring(0,1);
-        int starting_year = Integer.parseInt(textfieldstartingYearR3.getText());
-        int ending_year = Integer.parseInt(textfieldendingingYearR3.getText());
+        int starting_year = Integer.parseInt(y1R3.getText());
+        int ending_year = Integer.parseInt(y2R3.getText());
     	
         // Boundary Case
     	if (starting_year < 1880 || ending_year > 2019 || starting_year >= ending_year)
