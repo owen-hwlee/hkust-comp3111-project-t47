@@ -264,61 +264,43 @@ public class Controller {
     	int rank_rise1 = -1, rank_rise2 = -1, rank_fall1 = -1, rank_fall2 = -1;
     	int year_rise1 = -1, year_rise2 = -1, year_fall1 = -1, year_fall2 = -1;
     	
-    	int max_diff = -1;					// finding largest_fall in rank
-    	int min_diff = 1;					// finding largest_rise in rank
+    	int largest_rise = -1;
+    	int largest_fall = 1;
+    	int p, q, rank1, rank2;
+    	String key_p, key_q;
     	for (String name : names_appeared)
     	{
-    		int p = starting_year;
-    		String key = name + "#" + Integer.toString(p);
-    		while (!map.containsKey(key) && p <= ending_year)
+    		for (p = starting_year; p < ending_year; p++)
     		{
-    			p++;
-    			key = name + "#" + Integer.toString(p);
+    			key_p = name + "#" + Integer.toString(p);
+        		if (!map.containsKey(key_p))
+        			continue;
+        		q = p + 1;
+        		key_q = name + "#" + Integer.toString(q);
+        		if (!map.containsKey(key_q))
+        			continue;
+        		
+        		rank1 = map.get(key_p);
+        		rank2 = map.get(key_q);
+        		if (rank1 - rank2 > largest_rise)
+        		{
+        			largest_rise = rank1 - rank2;
+        			name_rise = name;
+        			rank_rise1 = rank1;
+        			rank_rise2 = rank2;
+        			year_rise1 = p;
+        			year_rise2 = q;
+        		}
+        		if (rank1 - rank2 < largest_fall)
+        		{
+        			largest_fall = rank1 - rank2;
+        			name_fall = name;
+        			rank_fall1 = rank1;
+        			rank_fall2 = rank2;
+        			year_fall1 = p;
+        			year_fall2 = q;
+        		}
     		}
-    		int min_rank = map.get(key);	// largest_fall
-    		int min_index = p;				// largest_fall
-    		int max_rank = map.get(key);	// largest_rise
-    		int max_index = p;				// largest_rise
-    		
-	    	for (int i = p + 1; i <= ending_year; i++)
-	    	{
-	    		key = name + "#" + Integer.toString(i);
-	    		if (!map.containsKey(key))
-	    			continue;
-	    		int curr_rank = map.get(key);
-	    		
-	    		// finding largest_fall in rank
-	    		if (curr_rank - min_rank > max_diff)
-	    		{
-	    			max_diff = curr_rank - min_rank;
-	    			name_fall = name;
-	    			year_fall1 = min_index;
-	    			year_fall2 = i;
-	    			rank_fall1 = map.get(name+"#"+min_index);
-	    			rank_fall2 = curr_rank;
-	    		}
-	    		if (curr_rank < min_rank)
-	    		{
-	    			min_rank = curr_rank;
-	    			min_index = i;
-	    		}
-	    		
-	    		// finding largest_rise in rank
-	    		if (curr_rank - max_rank < min_diff)
-	    		{
-	    			min_diff = curr_rank - max_rank;
-	    			name_rise = name;
-	    			year_rise1 = max_index;
-	    			year_rise2 = i;
-	    			rank_rise1 = map.get(name+"#"+max_index);
-	    			rank_rise2 = curr_rank;
-	    		}
-	    		if (curr_rank > max_rank)
-	    		{
-	    			max_rank = curr_rank;
-	    			max_index = i;
-	    		}
-	    	}
     	}
         
         String s = name_rise + " is found to have shown the largest rise in popularity from rank " + rank_rise1;
