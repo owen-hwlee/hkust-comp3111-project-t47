@@ -43,7 +43,7 @@ public class Controller {
 
     @FXML
     private TextField textfieldR1TopN;
-
+    
     @FXML
     private ToggleGroup T1;
 
@@ -55,7 +55,15 @@ public class Controller {
 
     @FXML
     private Tab tabReport2;
+    @FXML
+    private TextField textfieldR2Name;
+    
+    @FXML
+    private TextField textfieldR2FirstYear;
 
+    @FXML
+    private TextField textfieldR2LastYear;
+    
     @FXML
     private ToggleGroup T11;
 
@@ -75,10 +83,58 @@ public class Controller {
     private Tab tabApp1;
 
     @FXML
+    private TextField textfieldA1dadName;
+
+    @FXML
+    private TextField textfieldA1momName;
+
+    @FXML
+    private TextField textfieldA1dadYOB;
+
+    @FXML
+    private TextField textfieldA1momYOB;
+
+    @FXML
+    private TextField textfieldA1vintageYear;
+
+    @FXML
     private Tab tabApp2;
 
     @FXML
+    private TextField textfieldA2iName;
+
+    @FXML
+    private TextField textfieldA2iYOB;
+
+    @FXML
+    private ToggleGroup T5_1;
+
+    @FXML
+    private ToggleGroup T5_2;
+
+    @FXML
+    private ToggleGroup T5_3;
+
+    @FXML
     private Tab tabApp3;
+
+    @FXML
+    private TextField textfieldA3iName;
+
+    @FXML
+    private TextField textfieldA3iYOB;
+
+    @FXML
+    private ToggleGroup T6_1;
+
+    @FXML
+    private TextField textfieldA3iNameMate;
+
+    @FXML
+    private ToggleGroup T6_2;
+
+    @FXML
+    private ToggleGroup T6_3;
 
     @FXML
     private TextArea textAreaConsole;
@@ -179,29 +235,114 @@ public class Controller {
 
         // parse data from UI
 
-        int N = Integer.parseInt(textfieldR1TopN.getText());
+        int n = Integer.parseInt(textfieldR1TopN.getText());
         RadioButton rb1 = (RadioButton)(T1.getSelectedToggle());
-        String gender = rb1.getText();
+        String g = rb1.getText();
         // String gender = "Male";
-        gender = gender.substring(0,1);
+        String gender = g.substring(0,1);
         int first_year = Integer.parseInt(textfieldR1FirstYear.getText());
         int last_year = Integer.parseInt(textfieldR1LastYear.getText());
 
         // create profiles
-        /*
-        Profile[][] people = new Profile[last_year - first_year + 1][N];
+
+        Profile[][] people = new Profile[last_year - first_year + 1][n];
         for (int i = first_year; i <= last_year; ++i) {
-            for (int j = 0; j < N; ++j) {
-                people[i - first_year][N] = new Profile(i, j + 1, gender);
+            for (int j = 1; j <= n; ++j) {
+                people[i - first_year][j - 1] = new Profile(i, gender, j);
             }
+        }
+
+        // store into string
+
+        /*
+        String s = "This is a report detailing top ";
+        s += Integer.toString(n);
+        s += " ";
+        if (gender.equals("M")) s += "male";
+        else s += "female";
+        s += " names of birth from ";
+        s += Integer.toString(first_year);
+        s += " to ";
+        s += Integer.toString(last_year);
+        s += ".\n\n";
+        */
+
+        // summary of results
+
+        int k = -1;
+
+        String[] names = new String[last_year - first_year + 1];
+        int[] freq = new int[names.length];
+        for (int i = first_year; i <= last_year; ++i) {
+            for (int j = 0; j < freq.length; ++j) {
+                if (people[i - first_year][0].getName().equals(names[j])) {
+                    ++freq[j];
+                    break;
+                }
+                else if (freq[j] == 0) {
+                    freq[j] = 1;
+                    names[j] = people[i - first_year][0].getName();
+                    break;
+                }
+            }
+        }
+        int index = 0;      // find index and values of the most frequent top spot name
+        for (int i = 0; i < freq.length; ++i) {
+            if (k < freq[i]) {
+                k = freq[i];
+                index = i;
+            }
+            else if (freq[i] == 0) {
+                break;
+            }
+        }
+
+        /*
+        for (int i = 0; i < freq.length; ++i) {
+            System.out.print(names[i]);
+            System.out.print(freq[i]);
         }
         */
 
-        // store into string
-        String s = Integer.toString(N);
-        s += gender;
-        s += Integer.toString(first_year);
-        s += Integer.toString(last_year);
+        String s = String.format("Over the period %d to %d, %s for %s has hold the top spot most often for a total of %d times.\n\n",
+                                    first_year, last_year, names[index], gender.equals("M")? "males": "females", k);
+
+        // TODO: consider case where there are more than one most frequent item
+
+        // detailed results
+
+        /*
+        for (int i = first_year; i <= last_year; ++i) {
+            s += "For year ";
+            s += Integer.toString(i);
+            s += ":\n";
+            for (int j = 1; j <= n; ++j) {
+                s += Integer.toString(j);
+                s += ".\tName: ";
+                s += String.format("%1$-15s", people[i - first_year][j - 1].getName());
+                s += "Frequency: ";
+                s += Integer.toString(people[i - first_year][j - 1].getFreq());
+                s += "\n";
+                // s += Boolean.toString(people[i - first_year][j - 1].getName().equals("Emma"));
+            }
+            s += "\n";
+        }
+        */
+
+        s += "Detailed results: (in table form)\nYear ";
+        for (int i = 1; i <= n; ++i) {
+            s += String.format("| Top %1$-7d", i);
+        }
+        for (int i = first_year; i <= last_year; ++i) {
+            s += "\n-----";
+            for (int j = 0; j < n; ++j) {
+                s += "+------------";
+            }
+            s += String.format("\n%d ", i);
+            for (int j = 0; j < n; ++j) {
+                s += String.format("| %1$-11s", people[i - first_year][j].getName());
+            }
+        }
 
         textAreaConsole.setText(s);
     }
@@ -214,7 +355,20 @@ public class Controller {
      */
     @FXML
     void reporting2() {
-        textAreaConsole.setText("Task 2 not yet ready ah");
+    	String N = textfieldR2Name.getText();
+        RadioButton rb2 = (RadioButton)(T11.getSelectedToggle());
+        String gender = rb2.getText();
+        
+        gender = gender.substring(0,1);
+        int first_year = Integer.parseInt(textfieldR2FirstYear.getText());
+        int last_year = Integer.parseInt(textfieldR2LastYear.getText());
+
+        String s = N;
+        s += gender;
+        s += Integer.toString(first_year);
+        s += Integer.toString(last_year);
+
+        textAreaConsole.setText(s);
     }
 
 
@@ -228,6 +382,7 @@ public class Controller {
         // Parse Data from UI
         RadioButton rb = (RadioButton)(T111.getSelectedToggle());
         String gender = rb.getText();
+
         gender = gender.substring(0,1);
         int starting_year = Integer.parseInt(textfieldstartingYearR3.getText());
         int ending_year = Integer.parseInt(textfieldendingingYearR3.getText());
@@ -320,6 +475,20 @@ public class Controller {
      */
     @FXML
     void application1() {
+        // set vintageYear to 2019 if no input
+        String dadName = textfieldA1dadName.getText();
+        String momName = textfieldA1momName.getText();
+        int dadYOB = Integer.parseInt(textfieldA1dadYOB.getText());
+        int momYOB = Integer.parseInt(textfieldA1momYOB.getText());
+        int vintageYear = 2019;
+        if (!textfieldA1vintageYear.getText().equals("")){
+            vintageYear = Integer.parseInt(textfieldA1vintageYear.getText());
+        }
+
+        String[] kidNames = AnalyzeNames.NK_T4(dadName, momName, dadYOB, momYOB, vintageYear);
+
+        // TODO
+
         textAreaConsole.setText("Task 4 not yet ready ah");
     }
 
@@ -330,6 +499,19 @@ public class Controller {
      */
     @FXML
     void application2() {
+        String iName = textfieldA2iName.getText();
+        int iYOB = Integer.parseInt(textfieldA2iYOB.getText());
+        RadioButton rb5 = (RadioButton)(T5_1.getSelectedToggle());
+        String iGender = rb5.getText().substring(0, 1);
+        rb5 = (RadioButton)(T5_2.getSelectedToggle());
+        String iGenderMate = rb5.getText().substring(0, 1);
+        rb5 = (RadioButton)(T5_3.getSelectedToggle());
+        String iPreference = rb5.getText();
+
+        String oName = AnalyzeNames.NK_T5(iName, iGender, iYOB, iGenderMate, iPreference);
+
+        // TODO
+
         textAreaConsole.setText("Task 5 not yet ready ah");
     }
 
@@ -340,6 +522,20 @@ public class Controller {
      */
     @FXML
     void application3() {
+        String iName = textfieldA3iName.getText();
+        int iYOB = Integer.parseInt(textfieldA3iYOB.getText());
+        RadioButton rb6 = (RadioButton)(T6_1.getSelectedToggle());
+        String iGender = rb6.getText().substring(0, 1);
+        String iNameMate = textfieldA3iNameMate.getText();
+        rb6 = (RadioButton)(T6_2.getSelectedToggle());
+        String iGenderMate = rb6.getText().substring(0, 1);
+        rb6 = (RadioButton)(T6_3.getSelectedToggle());
+        String iPreference = rb6.getText();
+
+        int oScore = AnalyzeNames.NK_T6(iName, iGender, iYOB, iNameMate, iGenderMate, iPreference);
+
+        // TODO
+
         textAreaConsole.setText("Task 6 not yet ready ah");
     }
 
