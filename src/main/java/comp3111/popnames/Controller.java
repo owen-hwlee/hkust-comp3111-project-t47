@@ -485,11 +485,13 @@ public class Controller {
             vintageYear = Integer.parseInt(textfieldA1vintageYear.getText());
         }
 
+        // run the NK-T4 algorithm
         String[] kidNames = AnalyzeNames.NK_T4(dadName, momName, dadYOB, momYOB, vintageYear);
 
-        // TODO
+        // parse the data into words and load it into String
+        String s = String.format("Recommended male name: %s\nRecommended female name: %s", kidNames[0], kidNames[1]);
 
-        textAreaConsole.setText("Task 4 not yet ready ah");
+        textAreaConsole.setText(s);
     }
 
     /**
@@ -538,7 +540,6 @@ public class Controller {
 
         textAreaConsole.setText("Task 6 not yet ready ah");
     }
-
 
 }
 
