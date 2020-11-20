@@ -172,4 +172,16 @@ public class AnalyzeNames {
 		 return oScore;
 	 }
 
+	 public static boolean isValidYear(String yob) {
+		 try {
+		 	 int year = Integer.parseInt(yob);
+		 	 if (year < 1880 || year > 2019) {
+		 	 	 return false;
+			 }
+		 	 return true;
+		 } catch (Exception e) {
+		 	 return false;
+		 }
+	 }
+
 }
