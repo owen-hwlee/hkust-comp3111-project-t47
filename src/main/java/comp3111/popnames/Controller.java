@@ -356,18 +356,68 @@ public class Controller {
     @FXML
     void reporting2() {
     	String N = textfieldR2Name.getText();
+    	if (N.equals("")) {
+    		textAreaConsole.setText("Please input a name");
+    		return;
+    	}
         RadioButton rb2 = (RadioButton)(T11.getSelectedToggle());
         String gender = rb2.getText();
         
         gender = gender.substring(0,1);
+        if (textfieldR2FirstYear.getText().equals("") || textfieldR2LastYear.getText().equals("")) {
+        	textAreaConsole.setText("Please input the year");
+        	return;
+        }
         int first_year = Integer.parseInt(textfieldR2FirstYear.getText());
         int last_year = Integer.parseInt(textfieldR2LastYear.getText());
 
-        String s = N;
-        s += gender;
-        s += Integer.toString(first_year);
-        s += Integer.toString(last_year);
+        if ( first_year<1880 || last_year>2019 ) {
+        	textAreaConsole.setText("Please input year within the range");
+        	return;
+        }
+     
+       
+        Profile[] ranks = new Profile[last_year - first_year + 1];
+        for (int i = first_year; i <= last_year; ++i) {
+        	ranks[i - first_year] = new Profile(i, gender, N);  
+        }
 
+        String s = String.format("The popularity of %s over the period %d to %d.\n\n",
+        		N,first_year, last_year);
+
+        s += "Detailed results: (in table form)\nYear ";
+        s += String.format("| %1$-11s", "Rank");
+        s += String.format("| %1$-11s", "Count");
+        s += String.format("| %1$-11s", "Percentage");
+        
+        
+        for (int i = 0; i <= last_year-first_year; ++i) {
+            s += "\n-----";
+            for (int j = 0; j < 3; ++j) {
+                s += "+------------";
+            }
+            s += String.format("\n%d ", i+first_year);
+            
+            if (ranks[i].getRank() == -1) {
+            	s += String.format("| %1$-11s", "None");
+            }
+            else {
+            	s += String.format("| %1$-11d", ranks[i].getRank());
+            }
+            if (ranks[i].getFreq() == -1) {
+            	s += String.format("| %1$-11d", 0);
+            }
+            else {
+            	s += String.format("| %1$-11d", ranks[i].getFreq());
+            }
+            String percent = String.format("%.2f",((double)((double)ranks[i].getFreq()*100/(double)AnalyzeNames.getTotalByGender(i+first_year, gender))));
+            if (percent.equals("-0.00")) {
+            	s += String.format("| %1$-11s", "0.00");   
+            }
+            else {
+            	s += String.format("| %1$-11s", percent);   
+            }
+        }   
         textAreaConsole.setText(s);
     }
 
