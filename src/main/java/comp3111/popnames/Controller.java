@@ -368,6 +368,12 @@ public class Controller {
         	textAreaConsole.setText("Please input the year");
         	return;
         }
+        double temp = Double.parseDouble(textfieldR2FirstYear.getText());
+        double temp1 = Double.parseDouble(textfieldR2LastYear.getText());
+        if (temp%1 !=0 || temp1%1 !=0) {
+        	textAreaConsole.setText("Please input an integer for the period of the year");
+        	return;
+        }
         int first_year = Integer.parseInt(textfieldR2FirstYear.getText());
         int last_year = Integer.parseInt(textfieldR2LastYear.getText());
 
@@ -556,11 +562,40 @@ public class Controller {
     @FXML
     void application2() {
         String iName = textfieldA2iName.getText();
+        if (iName.equals("")) {
+        	textAreaConsole.setText("Please input your name");
+    		return;
+        }
+        if (textfieldA2iYOB.getText().equals("")) {
+        	textAreaConsole.setText("Please input your year of birth");
+    		return;
+        }
+        double temp = Double.parseDouble(textfieldA2iYOB.getText());
+        if (temp%1 !=0) {
+        	textAreaConsole.setText("Please input an integer for the year of birth");
+        	return;
+        }
         int iYOB = Integer.parseInt(textfieldA2iYOB.getText());
+        if(iYOB>2018 || iYOB<1881) {
+        	textAreaConsole.setText("Can only calculate year of birth from 1881 to 2018");
+    		return;
+        }
+        if (T5_1.getSelectedToggle() == null) {
+        	textAreaConsole.setText("Please input your gender");
+    		return;
+        }
         RadioButton rb5 = (RadioButton)(T5_1.getSelectedToggle());
         String iGender = rb5.getText().substring(0, 1);
+        if (T5_2.getSelectedToggle() == null) {
+        	textAreaConsole.setText("Please input your soulmate's gender");
+    		return;
+        }
         rb5 = (RadioButton)(T5_2.getSelectedToggle());
         String iGenderMate = rb5.getText().substring(0, 1);
+        if (T5_3.getSelectedToggle() == null) {
+        	textAreaConsole.setText("Please input your preference");
+    		return;
+        }
         rb5 = (RadioButton)(T5_3.getSelectedToggle());
         String iPreference = rb5.getText();
 
@@ -568,7 +603,7 @@ public class Controller {
 
         // TODO
 
-        textAreaConsole.setText("Task 5 not yet ready ah");
+        textAreaConsole.setText("The soulmate name will be "+ oName);
     }
 
     /**

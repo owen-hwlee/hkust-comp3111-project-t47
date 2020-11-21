@@ -185,7 +185,23 @@ public class AnalyzeNames {
 	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
 		 String oName = "";
 		 // TODO
-
+		 int oRank;
+		 int oYOB = 0;
+//		 oRank = this.getRank()
+		 oRank = getRank(iYOB,iName,iGender);
+		 if (oRank == -1) {
+			 oRank = 1;
+		 }
+		 if (iPreference.equals("Younger")) {
+			 oYOB = iYOB+1;
+		 }
+		 else if (iPreference.equals("Older")) {
+			 oYOB = iYOB-1;
+		 }
+		 oName = getName(oYOB,oRank,iGenderMate);
+		 if (oName.equals("information on the name at the specified rank is not available")) {
+			 oName = getName(oYOB,1,iGenderMate);
+		 }
 		 return oName;
 	 }
 
