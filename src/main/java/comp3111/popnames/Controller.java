@@ -375,7 +375,11 @@ public class Controller {
         	textAreaConsole.setText("Please input year within the range");
         	return;
         }
-     
+        
+        if ( first_year > last_year) {
+        	textAreaConsole.setText("first year should be greater than last year");
+        	return;
+        }
        
         Profile[] ranks = new Profile[last_year - first_year + 1];
         for (int i = first_year; i <= last_year; ++i) {
@@ -412,10 +416,10 @@ public class Controller {
             }
             String percent = String.format("%.2f",((double)((double)ranks[i].getFreq()*100/(double)AnalyzeNames.getTotalByGender(i+first_year, gender))));
             if (percent.equals("-0.00")) {
-            	s += String.format("| %1$-11s", "0.00");   
+            	s += String.format("| %1$-11s", "0.00%");   
             }
             else {
-            	s += String.format("| %1$-11s", percent);   
+            	s += String.format("| %1$-11s", (percent+"%"));   
             }
         }   
         textAreaConsole.setText(s);
