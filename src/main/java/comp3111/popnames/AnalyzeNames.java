@@ -46,7 +46,31 @@ public class AnalyzeNames {
 		return oReport;
 	}
 	
-	
+	public static int getTotalByGender(int year, String gender) {
+		
+		
+		int totalBoys = 0;
+		int totalGirls = 0;
+				
+		for (CSVRecord rec : getFileParser(year)) {
+			int numBorn = Integer.parseInt(rec.get(2));			
+			if (rec.get(1).equals("M")) {
+				totalBoys += numBorn;
+			}
+			else {
+				totalGirls += numBorn;
+			}
+		}
+		
+		if (gender.equals("M")) {
+			
+			return totalBoys;
+		} 
+		else if (gender.equals("F")) {
+			return totalGirls;
+		}
+		return 0;
+	}
 	 public static int getRank(int year, String name, String gender) {
 	     boolean found = false;
 	     int oRank = 0;
