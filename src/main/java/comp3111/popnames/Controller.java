@@ -636,9 +636,9 @@ public class Controller {
         int oScore = AnalyzeNames.NK_T6(iName, iGender, iYOB, iNameMate, iGenderMate, iPreference);
 
         // TODO
+        String s = String.format("Score of Compatibility (0%: Not Compatible; 100%: Perfect Match) = %s%", oScore);
         
-        
-        textAreaConsole.setText("Task 6 not yet ready ah");
+        textAreaConsole.setText(s);
     }
 
 }

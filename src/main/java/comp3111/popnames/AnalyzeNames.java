@@ -209,8 +209,18 @@ public class AnalyzeNames {
 		 int oScore = -1;
 		 // TODO
 		 int oRank, oYOB, oRankMate;
-		 Profile mate = new Profile()
-		 if ()
+		 oRank = getRank(iYOB, iName, iGender);
+		 if (oRank == -1)
+			 oRank = 1;
+		 if (iPreference.equals("Younger"))
+			 oYOB = iYOB + 1;
+		 else
+			 oYOB = iYOB - 1;
+		 oRankMate = getRank(oYOB, iNameMate, iGenderMate);
+		 if (oRankMate == -1)
+			 oRankMate = 1;
+		 
+		 oScore = (1 - Math.abs(oRank - oRankMate))/oRank * 100;
 		 return oScore;
 	 }
 
