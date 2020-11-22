@@ -46,7 +46,31 @@ public class AnalyzeNames {
 		return oReport;
 	}
 	
-	
+	public static int getTotalByGender(int year, String gender) {
+		
+		
+		int totalBoys = 0;
+		int totalGirls = 0;
+				
+		for (CSVRecord rec : getFileParser(year)) {
+			int numBorn = Integer.parseInt(rec.get(2));			
+			if (rec.get(1).equals("M")) {
+				totalBoys += numBorn;
+			}
+			else {
+				totalGirls += numBorn;
+			}
+		}
+		
+		if (gender.equals("M")) {
+			
+			return totalBoys;
+		} 
+		else if (gender.equals("F")) {
+			return totalGirls;
+		}
+		return 0;
+	}
 	 public static int getRank(int year, String name, String gender) {
 	     boolean found = false;
 	     int oRank = 0;
@@ -143,7 +167,17 @@ public class AnalyzeNames {
 
 	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB, int vintageYear) {
 		 String[] kidNames = new String[2];		// kidNames[0] = boyName, kidNames[1] = girlName
-		 // TODO
+
+		 int dadRank = getRank(dadYOB, dadName, "M");
+		 if (dadRank == -1) {
+		 	dadRank = 1;
+		 }
+		 int momRank = getRank(momYOB, momName, "F");
+		 if (momRank == -1) {
+		 	momRank = 1;
+		 }
+		 kidNames[0] = getName(vintageYear, dadRank, "M");
+		 kidNames[1] = getName(vintageYear, momRank, "F");
 
 		 return kidNames;
 	 }
@@ -151,7 +185,23 @@ public class AnalyzeNames {
 	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
 		 String oName = "";
 		 // TODO
-
+		 int oRank;
+		 int oYOB = 0;
+//		 oRank = this.getRank()
+		 oRank = getRank(iYOB,iName,iGender);
+		 if (oRank == -1) {
+			 oRank = 1;
+		 }
+		 if (iPreference.equals("Younger")) {
+			 oYOB = iYOB+1;
+		 }
+		 else if (iPreference.equals("Older")) {
+			 oYOB = iYOB-1;
+		 }
+		 oName = getName(oYOB,oRank,iGenderMate);
+		 if (oName.equals("information on the name at the specified rank is not available")) {
+			 oName = getName(oYOB,1,iGenderMate);
+		 }
 		 return oName;
 	 }
 
@@ -162,6 +212,18 @@ public class AnalyzeNames {
 		 Profile mate = new Profile()
 		 if ()
 		 return oScore;
+	 }
+
+	 public static boolean isValidYear(String yob) {
+		 try {
+		 	 int year = Integer.parseInt(yob);
+		 	 if (year < 1880 || year > 2019) {
+		 	 	 return false;
+			 }
+		 	 return true;
+		 } catch (Exception e) {
+		 	 return false;
+		 }
 	 }
 
 }
