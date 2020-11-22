@@ -208,7 +208,23 @@ public class AnalyzeNames {
 	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, String iPreference) {
 		 int oScore = -1;
 		 // TODO
-
+		 double oRank, oRankMate;
+		 int oYOB;
+		 oRank = getRank(iYOB, iName, iGender);
+		 if (oRank == -1)
+			 oRank = 1;
+		 if (iPreference.equals("Younger"))
+			 oYOB = iYOB + 1;
+		 else
+			 oYOB = iYOB - 1;
+		 oRankMate = getRank(oYOB, iNameMate, iGenderMate);
+		 if (oRankMate == -1)
+			 oRankMate = 1;
+		 
+		 double x = Math.abs(oRank - oRankMate)/oRank;
+		 x = (1-x)*100;
+		 
+		 oScore = (int) x;
 		 return oScore;
 	 }
 

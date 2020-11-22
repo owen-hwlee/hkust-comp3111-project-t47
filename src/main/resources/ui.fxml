@@ -184,10 +184,10 @@
                               <Label layoutX="325.0" layoutY="202.0" text="Gender of soulmate:" />
                               <Label layoutX="300.0" layoutY="127.0" text="Your year of birth:" />
                               <Label layoutX="75.0" layoutY="237.0" text="Soulmate age preference:" />
-                              <Button layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application3" text="OUTPUT (yet to be implemented" />
+                              <Button layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application3" text="OUTPUT" />
                               <TextField fx:id="textfieldA3iName" layoutX="156.0" layoutY="123.0" prefHeight="25.0" prefWidth="110.0" />
                               <TextField fx:id="textfieldA3iYOB" layoutX="412.0" layoutY="123.0" prefHeight="25.0" prefWidth="56.0" />
-                              <RadioButton layoutX="168.0" layoutY="166.0" mnemonicParsing="false" text="Male">
+                              <RadioButton layoutX="168.0" layoutY="166.0" mnemonicParsing="false" selected="true" text="Male">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="T6_1" />
                                  </toggleGroup>
@@ -198,8 +198,8 @@
                                     <ToggleGroup fx:id="T6_2" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton layoutX="520.0" layoutY="202.0" mnemonicParsing="false" text="Female" toggleGroup="$T6_2" />
-                              <RadioButton layoutX="231.0" layoutY="237.0" mnemonicParsing="false" text="Younger">
+                              <RadioButton layoutX="520.0" layoutY="202.0" mnemonicParsing="false" selected="true" text="Female" toggleGroup="$T6_2" />
+                              <RadioButton layoutX="231.0" layoutY="237.0" mnemonicParsing="false" selected="true" text="Younger">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="T6_3" />
                                  </toggleGroup>
