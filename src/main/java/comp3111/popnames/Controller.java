@@ -425,15 +425,24 @@ public class Controller {
     	String key_p, key_q;
     	for (String name : names_appeared)
     	{
-    		for (p = starting_year; p < ending_year; p++)
+    		p = starting_year;
+    		while (p < ending_year)
     		{
     			key_p = name + "#" + Integer.toString(p);
         		if (!map.containsKey(key_p))
+        		{
+        			p++;
         			continue;
+        		}
         		q = p + 1;
         		key_q = name + "#" + Integer.toString(q);
-        		if (!map.containsKey(key_q))
-        			continue;
+        		while (q <= ending_year && !map.containsKey(key_q))
+        		{
+        			q++;
+        			key_q = name + "#" + Integer.toString(q);
+        		}
+        		if (q > ending_year)
+        			break;
         		
         		rank1 = map.get(key_p);
         		rank2 = map.get(key_q);
@@ -455,6 +464,7 @@ public class Controller {
         			year_fall1 = p;
         			year_fall2 = q;
         		}
+        		p = q;
     		}
     	}
         
@@ -535,7 +545,8 @@ public class Controller {
         int oScore = AnalyzeNames.NK_T6(iName, iGender, iYOB, iNameMate, iGenderMate, iPreference);
 
         // TODO
-
+        
+        
         textAreaConsole.setText("Task 6 not yet ready ah");
     }
 

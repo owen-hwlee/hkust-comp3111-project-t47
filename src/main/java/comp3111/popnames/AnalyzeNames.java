@@ -158,7 +158,9 @@ public class AnalyzeNames {
 	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, String iPreference) {
 		 int oScore = -1;
 		 // TODO
-
+		 int oRank, oYOB, oRankMate;
+		 Profile mate = new Profile()
+		 if ()
 		 return oScore;
 	 }
 
