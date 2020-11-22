@@ -533,8 +533,23 @@ public class Controller {
         s += " in year " + year_rise2 + ".\nOn the other hand,\n";
         s += name_fall  + " is found to have shown the largest fall in popularity from rank " + rank_fall1;
         s += " in year " + year_fall1 + " to rank " + rank_fall2;
-        s += " in year " + year_fall2 + ".";
+        s += " in year " + year_fall2 + ".\n\n";
 
+        s += "Detailed results: (in table form)\n";
+        s += "-----------------------------------------------------------------------------------------------\n";
+        s += String.format("| %1$-15s", "Name");
+        s += String.format("| %1$-13s%2$-10s", "Lowest Rank", "[in year]");
+        s += String.format("| %1$-13s%2$-10s", "Highest Rank", "[in year]");
+        s += String.format("| %1$-25s", "Trend");
+        s += String.format("|\n| %1$-15s", name_rise);
+        s += String.format("| %1$-13s%2$-10s", rank_rise1, "[in " + year_rise1 + "]");
+        s += String.format("| %1$-13s%2$-10s", rank_rise2, "[in " + year_rise2 + "]");
+        s += String.format("| %1$-25s", "rank up" + " " + "(" + rank_rise1 + " - " + rank_rise2 + ")");
+        s += String.format("|\n| %1$-15s", name_fall);
+        s += String.format("| %1$-13s%2$-10s", rank_fall1, "[in " + year_fall1 + "]");
+        s += String.format("| %1$-13s%2$-10s", rank_fall2, "[in " + year_fall2 + "]");
+        s += String.format("| %1$-25s", "rank down" + " " + "(" + rank_fall1 + " - " + rank_fall2 + ")");
+        s += "|\n-----------------------------------------------------------------------------------------------\n";
     	textAreaConsole.setText(s);
     }
 
@@ -636,9 +651,21 @@ public class Controller {
         int oScore = AnalyzeNames.NK_T6(iName, iGender, iYOB, iNameMate, iGenderMate, iPreference);
 
         // TODO
-        String s = String.format("Score of Compatibility (0%: Not Compatible; 100%: Perfect Match) = %s%", oScore);
         
-        textAreaConsole.setText(s);
+    	if (iYOB < 1880 || iYOB > 2019)
+		{
+			textAreaConsole.setText("Invalid Input.");
+			return;
+		}
+    	if (iName.isBlank() || iNameMate.isBlank())
+    	{
+			textAreaConsole.setText("Invalid Input.");
+			return;
+    	}
+        
+        String s = String.format("Score of Compatibility = %s", oScore);
+        
+        textAreaConsole.setText(s+"%");
     }
 
 }
