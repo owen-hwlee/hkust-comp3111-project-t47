@@ -642,16 +642,20 @@ public class Controller {
         String iName = textfieldA3iName.getText();
     	if (iName.isBlank())
     	{
-			textAreaConsole.setText("Invalid Input. Please input Name");
+			textAreaConsole.setText("Invalid Input. Please input Your Name.");
 			return;
     	}
     	
     	if (textfieldA3iYOB.getText().isBlank())
     	{
-			textAreaConsole.setText("Invalid Input. Please input Year");
+			textAreaConsole.setText("Invalid Input. Please input Your Year of Birth.");
 			return;
     	}
         int iYOB = Integer.parseInt(textfieldA3iYOB.getText());
+        if (iYOB < 1880 || iYOB > 2019)
+        {
+        	textAreaConsole.setText("Invalid Input. Please input Your Year of Birth again.");
+        }
         
         RadioButton rb6 = (RadioButton)(T6_1.getSelectedToggle());
         String iGender = rb6.getText().substring(0, 1);
@@ -659,7 +663,7 @@ public class Controller {
         String iNameMate = textfieldA3iNameMate.getText();
     	if (iNameMate.isBlank())
     	{
-			textAreaConsole.setText("Invalid Input. Please input the names");
+			textAreaConsole.setText("Invalid Input. Please input Soulmate's Name.");
 			return;
     	}
     	
