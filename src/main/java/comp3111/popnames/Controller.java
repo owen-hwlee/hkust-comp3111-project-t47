@@ -638,30 +638,37 @@ public class Controller {
      */
     @FXML
     void application3() {
+    	
         String iName = textfieldA3iName.getText();
+    	if (iName.isBlank())
+    	{
+			textAreaConsole.setText("Invalid Input. Please input Name");
+			return;
+    	}
+    	
+    	if (textfieldA3iYOB.getText().isBlank())
+    	{
+			textAreaConsole.setText("Invalid Input. Please input Year");
+			return;
+    	}
         int iYOB = Integer.parseInt(textfieldA3iYOB.getText());
+        
         RadioButton rb6 = (RadioButton)(T6_1.getSelectedToggle());
         String iGender = rb6.getText().substring(0, 1);
+        
         String iNameMate = textfieldA3iNameMate.getText();
+    	if (iNameMate.isBlank())
+    	{
+			textAreaConsole.setText("Invalid Input. Please input the names");
+			return;
+    	}
+    	
         rb6 = (RadioButton)(T6_2.getSelectedToggle());
         String iGenderMate = rb6.getText().substring(0, 1);
         rb6 = (RadioButton)(T6_3.getSelectedToggle());
         String iPreference = rb6.getText();
 
         int oScore = AnalyzeNames.NK_T6(iName, iGender, iYOB, iNameMate, iGenderMate, iPreference);
-
-        // TODO
-        
-    	if (iYOB < 1880 || iYOB > 2019)
-		{
-			textAreaConsole.setText("Invalid Input.");
-			return;
-		}
-    	if (iName.isBlank() || iNameMate.isBlank())
-    	{
-			textAreaConsole.setText("Invalid Input.");
-			return;
-    	}
         
         String s = String.format("Score of Compatibility = %s", oScore);
         
