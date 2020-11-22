@@ -655,6 +655,7 @@ public class Controller {
         if (iYOB < 1880 || iYOB > 2019)
         {
         	textAreaConsole.setText("Invalid Input. Please input Your Year of Birth again.");
+        	return;
         }
         
         RadioButton rb6 = (RadioButton)(T6_1.getSelectedToggle());
