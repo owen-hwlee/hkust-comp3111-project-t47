@@ -5,6 +5,9 @@ import edu.duke.*;
 
 public class AnalyzeNames {
 
+	public static final int LOWER_YEAR = 1880;
+	public static final int UPPER_YEAR = 2019;
+
 	public static CSVParser getFileParser(int year) {
      FileResource fr = new FileResource(String.format("dataset/yob%s.csv", year));
      return fr.getCSVParser(false);
@@ -228,16 +231,30 @@ public class AnalyzeNames {
 		 return oScore;
 	 }
 
-	 public static boolean isValidYear(String yob) {
+	 public static int returnYear(String yob) {
 		 try {
 		 	 int year = Integer.parseInt(yob);
-		 	 if (year < 1880 || year > 2019) {
-		 	 	 return false;
+		 	 if (year < LOWER_YEAR || year > UPPER_YEAR) {
+		 	 	 return 0;		// return 0 for out of range input
 			 }
-		 	 return true;
+		 	 return year;		// return corresponding year in Integer type
 		 } catch (Exception e) {
-		 	 return false;
+		 	 if (yob.equals("")) return -2;		// return -2 for empty input
+		 	 return -1;		// return -1 for invalid input
 		 }
+	 }
+
+	 public static int returnNumber(String number) {
+	 	try {
+	 		int n = Integer.parseInt(number);
+	 		if (n < 1) {
+	 			return 0;		// return 0 for out of range input
+			}
+	 		return n;		// return corresponding number in Integer type
+		} catch (Exception e) {
+	 		if (number.equals("")) return -2;	// return -2 for empty input
+			return -1;		// return -1 for invalid input
+		}
 	 }
 
 }

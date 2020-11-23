@@ -47,7 +47,7 @@
                               <Label layoutX="79.0" layoutY="44.0" />
                               <TextArea layoutX="96.0" layoutY="24.0" prefHeight="42.0" prefWidth="335.0" text="Generate a brief report in response to the queries on the most popular names registered at birth over a given period." wrapText="true" />
                               <Label layoutX="96.0" layoutY="100.0" text="Top N (N&gt;=1): " />
-                              <TextField fx:id="textfieldR1TopN" layoutX="178.0" layoutY="96.0" prefHeight="26.0" prefWidth="27.0" text="10" />
+                              <TextField fx:id="textfieldR1n" layoutX="178.0" layoutY="96.0" prefHeight="26.0" prefWidth="27.0" text="10" />
                               <Label layoutX="253.0" layoutY="100.0" text="Gender: " />
                               <RadioButton layoutX="308.0" layoutY="100.0" mnemonicParsing="false" selected="true" text="Male">
                                  <toggleGroup>
@@ -56,10 +56,10 @@
                               </RadioButton>
                               <RadioButton layoutX="360.0" layoutY="100.0" mnemonicParsing="false" text="Female" toggleGroup="$T1" />
                               <Label layoutX="96.0" layoutY="132.0" text="Period (1880 - 2019): " />
-                              <TextField fx:id="textfieldR1LastYear" layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
-                              <TextField fx:id="textfieldR1FirstYear" layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
+                              <TextField fx:id="textfieldR1y2" layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
+                              <TextField fx:id="textfieldR1y1" layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                               <Label layoutX="258.0" layoutY="130.0" text="to" />
-                              <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting1" text="REPORT" />
+                              <Button fx:id="buttonR1" layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting1" text="REPORT" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -85,7 +85,7 @@
                                     <TextField fx:id="textfieldR2LastYear" layoutX="310.0" layoutY="123.0" prefHeight="26.0" prefWidth="60.0" />
                                     <TextField fx:id="textfieldR2FirstYear" layoutX="223.0" layoutY="123.0" prefHeight="26.0" prefWidth="60.0" />
                                     <Label layoutX="290.0" layoutY="127.0" text="to" />
-                                    <Button layoutX="108.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting2" text="REPORT (yet to be implemented)" />
+                                    <Button fx:id="buttonR2" layoutX="108.0" layoutY="169.0" mnemonicParsing="false" onAction="#reporting2" text="REPORT (yet to be implemented)" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -110,7 +110,7 @@
                                     <Label layoutX="274.0" layoutY="136.0" text="to" />
                                     <TextField fx:id="y1R3" layoutX="226.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                                     <TextField fx:id="y2R3" layoutX="292.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
-                                    <Button layoutX="112.0" layoutY="175.0" mnemonicParsing="false" onAction="#reporting3" text="REPORT" />
+                                    <Button fx:id="buttonR3" layoutX="112.0" layoutY="175.0" mnemonicParsing="false" onAction="#reporting3" text="REPORT" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -121,7 +121,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="719.0">
                            <children>
-                              <TextArea layoutX="40.0" layoutY="26.0" prefHeight="60.0" prefWidth="638.0" text="Develop and implement an online service using empirical data to help make informed decisions on naming their newborn babies.  Sample Scenario of Application: (i) Parents seeking advices on naming their babies; (ii) A couple seeking advices on naming their pets&#10;&#10;Input&#10;* iDadName, iMomName: Names of the baby’s dad and mom&#10;* iDadYOB, iMomYOB: Years of birth of the baby’s dad and mom&#10;* iVintageYear (optional): A year to be chosen from 1880 to 2019; If not chosen, set the value of iVintageYear to 2019&#10;&#10;Output&#10;* oBoyName: Recommended name for baby boy according to the NK-T4 Algorithm&#10;* oGirlName: Recommended name for baby girl according to the NK-T4 Algorithm&#10;* plus, WOW factor on user experience and algorithm design!" wrapText="true" />
+                              <TextArea layoutX="40.0" layoutY="26.0" prefHeight="60.0" prefWidth="638.0" text="Advise recommended boy and girl names for parents to newborn babies or pet owners to their beloved pets based on input names and years of birth. This feature utilizes the newly and carefully designed NK-T4 name recommending algorithm.&#10;" wrapText="true" />
                               <Label layoutX="75.0" layoutY="127.0" text="Name of Dad:" />
                               <Label layoutX="338.0" layoutY="127.0" text="Name of Mom:" />
                               <Label layoutX="75.0" layoutY="170.0" text="Year of birth of Dad:" />
@@ -133,7 +133,7 @@
                               <TextField fx:id="textfieldA1momYOB" layoutX="472.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" />
                               <TextField fx:id="textfieldA1vintageYear" layoutX="217.0" layoutY="205.0" prefHeight="25.0" prefWidth="57.0" />
                               <Label layoutX="283.0" layoutY="209.0" text="Range: 1880 - 2019" />
-                              <Button layoutX="75.0" layoutY="256.0" mnemonicParsing="false" onAction="#application1" text="OUTPUT (yet to be implemented)" />
+                              <Button fx:id="buttonA1" layoutX="75.0" layoutY="256.0" mnemonicParsing="false" onAction="#application1" text="OUTPUT (yet to be implemented)" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -149,7 +149,7 @@
                               <Label layoutX="75.0" layoutY="201.0" text="Gender of soulmate:" />
                               <Label layoutX="300.0" layoutY="127.0" text="Your year of birth:" />
                               <Label layoutX="75.0" layoutY="237.0" text="Soulmate age preference:" />
-                              <Button layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application2" text="OUTPUT (yet to be implemented" />
+                              <Button fx:id="buttonA2" layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application2" text="OUTPUT (yet to be implemented" />
                               <TextField fx:id="textfieldA2iName" layoutX="156.0" layoutY="123.0" prefHeight="25.0" prefWidth="110.0" />
                               <TextField fx:id="textfieldA2iYOB" layoutX="412.0" layoutY="123.0" prefHeight="25.0" prefWidth="56.0" />
                               <RadioButton layoutX="168.0" layoutY="165.0" mnemonicParsing="false" text="Male">
@@ -184,7 +184,7 @@
                               <Label layoutX="325.0" layoutY="202.0" text="Gender of soulmate:" />
                               <Label layoutX="300.0" layoutY="127.0" text="Your year of birth:" />
                               <Label layoutX="75.0" layoutY="237.0" text="Soulmate age preference:" />
-                              <Button layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application3" text="OUTPUT" />
+                              <Button fx:id="buttonA3" layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application3" text="OUTPUT" />
                               <TextField fx:id="textfieldA3iName" layoutX="156.0" layoutY="123.0" prefHeight="25.0" prefWidth="110.0" />
                               <TextField fx:id="textfieldA3iYOB" layoutX="412.0" layoutY="123.0" prefHeight="25.0" prefWidth="56.0" />
                               <RadioButton layoutX="168.0" layoutY="166.0" mnemonicParsing="false" selected="true" text="Male">
