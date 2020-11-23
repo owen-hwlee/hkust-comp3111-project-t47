@@ -42,19 +42,23 @@ public class Controller {
     private Tab tabReport1;
 
     @FXML
-    private TextField textfieldR1TopN;
+    private TextField textfieldR1n;
     
     @FXML
     private ToggleGroup T1;
 
     @FXML
-    private TextField textfieldR1FirstYear;
+    private TextField textfieldR1y1;
 
     @FXML
-    private TextField textfieldR1LastYear;
+    private TextField textfieldR1y2;
+
+    @FXML
+    private Button buttonR1;
 
     @FXML
     private Tab tabReport2;
+
     @FXML
     private TextField textfieldR2Name;
     
@@ -68,6 +72,9 @@ public class Controller {
     private ToggleGroup T11;
 
     @FXML
+    private Button buttonR2;
+
+    @FXML
     private Tab tabReport3;
 
     @FXML
@@ -78,6 +85,9 @@ public class Controller {
     
     @FXML
     private TextField y2R3;
+
+    @FXML
+    private Button buttonR3;
 
     @FXML
     private Tab tabApp1;
@@ -98,6 +108,9 @@ public class Controller {
     private TextField textfieldA1vintageYear;
 
     @FXML
+    private Button buttonA1;
+
+    @FXML
     private Tab tabApp2;
 
     @FXML
@@ -114,6 +127,9 @@ public class Controller {
 
     @FXML
     private ToggleGroup T5_3;
+
+    @FXML
+    private Button buttonA2;
 
     @FXML
     private Tab tabApp3;
@@ -135,6 +151,9 @@ public class Controller {
 
     @FXML
     private ToggleGroup T6_3;
+
+    @FXML
+    private Button buttonA3;
 
     @FXML
     private TextArea textAreaConsole;
@@ -233,115 +252,136 @@ public class Controller {
     @FXML
     void reporting1() {
 
+        String s = "";
+
         // parse data from UI
 
-        int n = Integer.parseInt(textfieldR1TopN.getText());
-        RadioButton rb1 = (RadioButton)(T1.getSelectedToggle());
+        int n = AnalyzeNames.returnNumber(textfieldR1n.getText());
+        RadioButton rb1 = (RadioButton) (T1.getSelectedToggle());
         String g = rb1.getText();
         // String gender = "Male";
-        String gender = g.substring(0,1);
-        int first_year = Integer.parseInt(textfieldR1FirstYear.getText());
-        int last_year = Integer.parseInt(textfieldR1LastYear.getText());
+        String gender = g.substring(0, 1);
+        int y1 = AnalyzeNames.returnYear(textfieldR1y1.getText());
+        int y2 = AnalyzeNames.returnYear(textfieldR1y2.getText());
 
-        // create profiles
+        // validate data
 
-        Profile[][] people = new Profile[last_year - first_year + 1][n];
-        for (int i = first_year; i <= last_year; ++i) {
-            for (int j = 1; j <= n; ++j) {
-                people[i - first_year][j - 1] = new Profile(i, gender, j);
-            }
+        // validate n
+        if (n == -1) {
+            s = "Invalid input! Please enter a valid positive integer for N (N >= 1).";
+        } else if (n == 0) {
+            s = "Invalid input range! Please enter a valid positive integer for N (N >= 1).";
+        } else if (n == -2) {
+            s = "Empty input! Please enter a valid positive integer for N (N >= 1).";
+        } else
+        // validate y1
+        if (y1 == -1) {
+            s = "Invalid input! Please enter a valid year for first year (1880 - 2019).";
+        } else if (y1 == 0) {
+            s = "Invalid input range! Please enter a valid year for first year (1880 - 2019).";
+        } else if (y1 == -2) {
+            s = "Empty input! Please enter a valid positive integer for first year (1880 - 2019).";
+        } else
+        // validate y2
+        if (y2 == -1) {
+            s = "Invalid input! Please enter a valid year for last year (1880 - 2019).";
+        } else if (y2 == 0) {
+            s = "Invalid input range! Please enter a valid year for last year (1880 - 2019).";
+        } else if (y2 == -2) {
+            s = "Empty input! Please enter a valid positive integer for last year (1880 - 2019).";
+        } else
+        // validate y2 > y1
+        if (y1 >= y2) {
+            s = "First year should be strictly smaller than last year!";
         }
 
-        // store into string
+        // data validated, proceed with function
+        else {
 
-        /*
-        String s = "This is a report detailing top ";
-        s += Integer.toString(n);
-        s += " ";
-        if (gender.equals("M")) s += "male";
-        else s += "female";
-        s += " names of birth from ";
-        s += Integer.toString(first_year);
-        s += " to ";
-        s += Integer.toString(last_year);
-        s += ".\n\n";
-        */
+            // create profiles
 
-        // summary of results
+            Profile[][] people = new Profile[y2 - y1 + 1][n];
+            for (int i = y1; i <= y2; ++i) {
+                for (int j = 1; j <= n; ++j) {
+                    people[i - y1][j - 1] = new Profile(i, gender, j);
+                }
+            }
 
-        int k = -1;
+            // summary of results
 
-        String[] names = new String[last_year - first_year + 1];
-        int[] freq = new int[names.length];
-        for (int i = first_year; i <= last_year; ++i) {
-            for (int j = 0; j < freq.length; ++j) {
-                if (people[i - first_year][0].getName().equals(names[j])) {
-                    ++freq[j];
+            int k = -1;
+
+            String[] names = new String[y2 - y1 + 1];
+            int[] freq = new int[names.length];
+            for (int i = y1; i <= y2; ++i) {
+                for (int j = 0; j < freq.length; ++j) {
+                    if (people[i - y1][0].getName().equals(names[j])) {
+                        ++freq[j];
+                        break;
+                    } else if (freq[j] == 0) {
+                        freq[j] = 1;
+                        names[j] = people[i - y1][0].getName();
+                        break;
+                    }
+                }
+            }
+            int index = 0;      // find index and values of the most frequent top spot name
+            for (int i = 0; i < freq.length; ++i) {
+                if (k < freq[i]) {
+                    k = freq[i];
+                    index = i;
+                } else if (freq[i] == 0) {
                     break;
                 }
-                else if (freq[j] == 0) {
-                    freq[j] = 1;
-                    names[j] = people[i - first_year][0].getName();
-                    break;
+            }
+
+            /*
+            for (int i = 0; i < freq.length; ++i) {
+                System.out.print(names[i]);
+                System.out.print(freq[i]);
+            }
+            */
+
+            s = String.format("Over the period %d to %d, %s for %s has hold the top spot most often for a total of %d times.\n\n",
+                    y1, y2, names[index], gender.equals("M") ? "males" : "females", k);
+
+            // TODO: consider case where there are more than one most frequent item
+
+            // detailed results
+
+            /*
+            for (int i = y1; i <= y2; ++i) {
+                s += "For year ";
+                s += Integer.toString(i);
+                s += ":\n";
+                for (int j = 1; j <= n; ++j) {
+                    s += Integer.toString(j);
+                    s += ".\tName: ";
+                    s += String.format("%1$-15s", people[i - y1][j - 1].getName());
+                    s += "Frequency: ";
+                    s += Integer.toString(people[i - y1][j - 1].getFreq());
+                    s += "\n";
+                    // s += Boolean.toString(people[i - y1][j - 1].getName().equals("Emma"));
                 }
-            }
-        }
-        int index = 0;      // find index and values of the most frequent top spot name
-        for (int i = 0; i < freq.length; ++i) {
-            if (k < freq[i]) {
-                k = freq[i];
-                index = i;
-            }
-            else if (freq[i] == 0) {
-                break;
-            }
-        }
-
-        /*
-        for (int i = 0; i < freq.length; ++i) {
-            System.out.print(names[i]);
-            System.out.print(freq[i]);
-        }
-        */
-
-        String s = String.format("Over the period %d to %d, %s for %s has hold the top spot most often for a total of %d times.\n\n",
-                                    first_year, last_year, names[index], gender.equals("M")? "males": "females", k);
-
-        // TODO: consider case where there are more than one most frequent item
-
-        // detailed results
-
-        /*
-        for (int i = first_year; i <= last_year; ++i) {
-            s += "For year ";
-            s += Integer.toString(i);
-            s += ":\n";
-            for (int j = 1; j <= n; ++j) {
-                s += Integer.toString(j);
-                s += ".\tName: ";
-                s += String.format("%1$-15s", people[i - first_year][j - 1].getName());
-                s += "Frequency: ";
-                s += Integer.toString(people[i - first_year][j - 1].getFreq());
                 s += "\n";
-                // s += Boolean.toString(people[i - first_year][j - 1].getName().equals("Emma"));
             }
-            s += "\n";
-        }
-        */
+            */
 
-        s += "Detailed results: (in table form)\nYear ";
-        for (int i = 1; i <= n; ++i) {
-            s += String.format("| Top %1$-7d", i);
-        }
-        for (int i = first_year; i <= last_year; ++i) {
-            s += "\n-----";
-            for (int j = 0; j < n; ++j) {
-                s += "+------------";
+            s += "Detailed results: (in table form)\nYear ";
+            for (int i = 1; i <= n; ++i) {
+                s += String.format("| Top %1$-7d", i);
             }
-            s += String.format("\n%d ", i);
-            for (int j = 0; j < n; ++j) {
-                s += String.format("| %1$-11s", people[i - first_year][j].getName());
+            for (int i = y1; i <= y2; ++i) {
+                s += "\n-----";
+                for (int j = 0; j < n; ++j) {
+                    s += "+------------";
+                }
+                s += String.format("\n%d ", i);
+                for (int j = 0; j < n; ++j) {
+                    s += String.format("| %1$-11s", people[i - y1][j].getName());
+                }
             }
+
         }
 
         textAreaConsole.setText(s);
@@ -563,18 +603,47 @@ public class Controller {
         // set vintageYear to 2019 if no input
         String dadName = textfieldA1dadName.getText();
         String momName = textfieldA1momName.getText();
-        int dadYOB = Integer.parseInt(textfieldA1dadYOB.getText());
-        int momYOB = Integer.parseInt(textfieldA1momYOB.getText());
+        int dadYOB = AnalyzeNames.returnYear(textfieldA1dadYOB.getText());
+        int momYOB = AnalyzeNames.returnYear(textfieldA1momYOB.getText());
         int vintageYear = 2019;
-        if (!textfieldA1vintageYear.getText().equals("")){
-            vintageYear = Integer.parseInt(textfieldA1vintageYear.getText());
+        if (!textfieldA1vintageYear.getText().equals("")) {
+            vintageYear = AnalyzeNames.returnYear(textfieldA1vintageYear.getText());
         }
 
-        // run the NK-T4 algorithm
-        String[] kidNames = AnalyzeNames.NK_T4(dadName, momName, dadYOB, momYOB, vintageYear);
+        String s = "";
 
-        // parse the data into words and load it into String
-        String s = String.format("Recommended male name: %s\nRecommended female name: %s", kidNames[0], kidNames[1]);
+        // validate input
+
+        // validate dadYOB
+        if (dadYOB == 0) {
+            s = "Invalid input range! Please enter a valid year for year of birth of dad (1880 - 2019).";
+        } else if (dadYOB == -1) {
+            s = "Invalid input! Please enter a valid year for year of birth of dad (1880 - 2019).";
+        } else if (dadYOB == -2) {
+            s = "Empty input! Please enter a valid year for year of birth of dad (1880 - 2019).";
+        } else
+        // validate momYOB
+        if (momYOB == 0) {
+            s = "Invalid input range! Please enter a valid year for year of birth of mom (1880 - 2019).";
+        } else if (momYOB == -1) {
+            s = "Invalid input! Please enter a valid year for year of birth of mom (1880 - 2019).";
+        } else if (momYOB == -2) {
+            s = "Empty input! Please enter a valid year for year of birth of mom (1880 - 2019).";
+        } else {
+            // validate momYOB
+            if (vintageYear == 0 || vintageYear == -1 || vintageYear == -2) {
+                vintageYear = 2019;
+                s = "Empty/invalid input! Vintage year will be arbitrarily set to 2019.\n\n";
+            }
+
+            // all input checks out
+
+            // run the NK-T4 algorithm
+            String[] kidNames = AnalyzeNames.NK_T4(dadName, momName, dadYOB, momYOB, vintageYear);
+
+            // parse the data into words and load it into String
+            s += String.format("Recommended male name: %s\nRecommended female name: %s", kidNames[0], kidNames[1]);
+        }
 
         textAreaConsole.setText(s);
     }
