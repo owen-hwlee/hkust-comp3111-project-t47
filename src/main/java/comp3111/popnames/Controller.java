@@ -422,7 +422,7 @@ public class Controller {
         	return;
         }
         
-        if ( first_year > last_year) {
+        if ( first_year >= last_year) {
         	textAreaConsole.setText("first year should be strictly smaller than last year");
         	return;
         }
