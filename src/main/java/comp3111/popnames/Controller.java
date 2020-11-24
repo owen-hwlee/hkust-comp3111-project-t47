@@ -422,8 +422,8 @@ public class Controller {
         	return;
         }
         
-        if ( first_year > last_year) {
-        	textAreaConsole.setText("first year should be greater than last year");
+        if ( first_year >= last_year) {
+        	textAreaConsole.setText("first year should be strictly smaller than last year");
         	return;
         }
        
@@ -709,8 +709,6 @@ public class Controller {
         String iPreference = rb5.getText();
 
         String oName = AnalyzeNames.NK_T5(iName, iGender, iYOB, iGenderMate, iPreference);
-
-        // TODO
 
         textAreaConsole.setText("The soulmate name will be "+ oName);
     }
