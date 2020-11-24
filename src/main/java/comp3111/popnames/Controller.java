@@ -605,6 +605,7 @@ public class Controller {
         s += "-------------------------------------------------------------------------------------\n";
     	textAreaConsole.setText(s);
     	
+    /* TASK 3 Codes */	
     /*
         // Parse Data from UI
         RadioButton rb = (RadioButton)(T111.getSelectedToggle());
