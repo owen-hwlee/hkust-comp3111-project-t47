@@ -503,9 +503,9 @@ public class Controller {
 			textAreaConsole.setText("Invalid Input: YEAR. Please input year between 1880 and 2019.");
 			return;
 		}
-    	if (starting_year > ending_year)
+    	if (starting_year >= ending_year)
 		{
-			textAreaConsole.setText("Invalid Input: STARTINGYEAR greater than ENDINGYEAR.");
+			textAreaConsole.setText("Invalid Input: STARTINGYEAR greater than or equal to ENDINGYEAR.");
 			return;
 		}
     	
