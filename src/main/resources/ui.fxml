@@ -106,6 +106,8 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton layoutX="290.0" layoutY="104.0" mnemonicParsing="false" text="Female" toggleGroup="$T111" />
+                                    <Label layoutX="368.0" layoutY="104.0" text="Level of Popularity N:" />
+                                    <TextField fx:id="R3_n" layoutX="490.0" layoutY="100.0" prefHeight="26.0" prefWidth="43.0" text="100" />
                                     <Label layoutX="112.0" layoutY="138.0" text="Period (1880 - 2019): " />
                                     <Label layoutX="274.0" layoutY="136.0" text="to" />
                                     <TextField fx:id="y1R3" layoutX="226.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
@@ -207,7 +209,7 @@
                               <RadioButton layoutX="319.0" layoutY="237.0" mnemonicParsing="false" text="Older" toggleGroup="$T6_3" />
                               <Label layoutX="75.0" layoutY="202.0" text="Soulmate's name:" />
                               <TextField fx:id="textfieldA3iNameMate" layoutX="188.0" layoutY="198.0" prefHeight="25.0" prefWidth="110.0" />
-                              <TextArea layoutX="69.0" layoutY="28.0" prefHeight="78.0" prefWidth="581.0" text="Develop and implement an online service using empirical data to help make informed decisions on predicting scores for compatible pairs.  Sample Scenario of Application: (i) A person seeking advices on the chance of engaging in love affairs with someone of a different gender; (ii) A person seeking advices on the chance of engaging in love affairs with someone of the same gender.&#10;&#10;Input&#10;* iName, iGender, iYOB: Particulars of the person seeking advices&#10;* iNameMate, iGenderMate: Specify the name and gender of the person to be matched&#10;* iPreference: Specify the preference on having a younger or older soulmate&#10;&#10;Output&#10;* oScore: Provide a score of compatibility (0%: Not Compatible; 100%: Perfect Match) according to the NK-T6 Algorithm&#10;* plus, WOW factor on user experience and algorithm design!" wrapText="true" />
+                              <TextArea layoutX="69.0" layoutY="28.0" prefHeight="78.0" prefWidth="581.0" text="Predict a score of compatibility (0%: Not Compatible; 100%: Perfect Match) between you and your soulmate, by specifying both of your names, your year of birth and both of your gender. This feature utilizes the newly and carefully designed NK-T6 Predicting Algorithm." wrapText="true" />
                            </children>
                         </AnchorPane>
                      </content>
