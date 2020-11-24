@@ -1,7 +1,8 @@
 package comp3111.popnames;
 
 /**
- * // TODO: Ryan Javadoc
+ * This is a class used to generate instances of Profiles with relevant information inside for more convenient accessibility.
+ *
  */
 public class Profile {
 	

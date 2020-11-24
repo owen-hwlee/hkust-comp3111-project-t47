@@ -129,10 +129,10 @@
                               <Label layoutX="75.0" layoutY="170.0" text="Year of birth of Dad:" />
                               <Label layoutX="338.0" layoutY="170.0" text="Year of birth of Mom:" />
                               <Label layoutX="75.0" layoutY="209.0" text="(Optional) Vintage Year:" />
-                              <TextField fx:id="textfieldA1dadName" layoutX="166.0" layoutY="123.0" prefHeight="25.0" prefWidth="120.0" />
-                              <TextField fx:id="textfieldA1momName" layoutX="440.0" layoutY="123.0" prefHeight="25.0" prefWidth="120.0" />
-                              <TextField fx:id="textfieldA1dadYOB" layoutX="198.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" />
-                              <TextField fx:id="textfieldA1momYOB" layoutX="472.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" />
+                              <TextField fx:id="textfieldA1dadName" layoutX="166.0" layoutY="123.0" prefHeight="25.0" prefWidth="120.0" text="David" />
+                              <TextField fx:id="textfieldA1momName" layoutX="440.0" layoutY="123.0" prefHeight="25.0" prefWidth="120.0" text="Desire" />
+                              <TextField fx:id="textfieldA1dadYOB" layoutX="198.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" text="1941" />
+                              <TextField fx:id="textfieldA1momYOB" layoutX="472.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" text="1945" />
                               <TextField fx:id="textfieldA1vintageYear" layoutX="217.0" layoutY="205.0" prefHeight="25.0" prefWidth="57.0" />
                               <Label layoutX="283.0" layoutY="209.0" text="Range: 1880 - 2019" />
                               <Button fx:id="buttonA1" layoutX="75.0" layoutY="256.0" mnemonicParsing="false" onAction="#application1" text="OUTPUT (yet to be implemented)" />

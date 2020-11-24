@@ -289,10 +289,14 @@ public class AnalyzeNames {
 	 }
 
 	/**
-	 * // TODO: Owen Javadoc
+	 * This is a helper function to parse String inputs for year of birth.
+	 * It returns the corresponding year in Integer type.
+	 * It returns 0 for out of range integers.
+	 * It returns -1 for invalid non-numerical inputs.
+	 * It returns -2 for empty inputs.
 	 *
-	 * @param yob
-	 * @return
+	 * @param yob String extracted from text fields
+	 * @return Corresponding year in Integer type, or error integers for incorrect inputs
 	 */
 	 public static int returnYear(String yob) {
 		 try {

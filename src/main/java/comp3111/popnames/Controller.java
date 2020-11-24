@@ -797,7 +797,7 @@ public class Controller {
             s = "Empty input! Please enter a valid year for year of birth of mom (1880 - 2019).";
         } else {
             // validate momYOB
-            if (vintageYear == 0 || vintageYear == -1 || vintageYear == -2) {
+            if (vintageYear == 0 || vintageYear == -1) {
                 vintageYear = 2019;
                 s = "Empty/invalid input! Vintage year will be arbitrarily set to 2019.\n\n";
             }
