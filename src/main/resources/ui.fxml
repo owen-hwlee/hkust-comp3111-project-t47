@@ -106,6 +106,8 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton layoutX="290.0" layoutY="104.0" mnemonicParsing="false" text="Female" toggleGroup="$T111" />
+                                    <Label layoutX="368.0" layoutY="104.0" text="Level of Popularity N:" />
+                                    <TextField fx:id="R3_n" layoutX="490.0" layoutY="100.0" prefHeight="26.0" prefWidth="43.0" text="100" />
                                     <Label layoutX="112.0" layoutY="138.0" text="Period (1880 - 2019): " />
                                     <Label layoutX="274.0" layoutY="136.0" text="to" />
                                     <TextField fx:id="y1R3" layoutX="226.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
