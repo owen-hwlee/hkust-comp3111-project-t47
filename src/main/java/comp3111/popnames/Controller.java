@@ -489,7 +489,7 @@ public class Controller {
         gender = gender.substring(0,1);
         int starting_year = AnalyzeNames.returnYear(y1R3.getText());
         int ending_year = AnalyzeNames.returnYear(y2R3.getText());
-        int n = Integer.parseInt(R3_n.getText());
+        int n = AnalyzeNames.returnNumber(R3_n.getText());
     	
         // Boundary Case
     	if (starting_year == 0 || ending_year == 0)
@@ -509,9 +509,24 @@ public class Controller {
 		}
     	if (starting_year >= ending_year)
 		{
-			textAreaConsole.setText("Invalid Input: STARTINGYEAR greater than or equal to ENDINGYEAR.");
+			textAreaConsole.setText("Invalid Input: Period. Please ensure StartingYear < EndingYear.");
 			return;
 		}
+    	if (n == 0)
+    	{
+    		textAreaConsole.setText("Invalid input: N out of range. Please input N >= 1");
+    		return;
+    	}
+    	if (n == -2)
+    	{
+			textAreaConsole.setText("Invalid Input: N empty. Please input N.");
+			return;
+    	}
+    	if (n == -1)
+    	{
+    		textAreaConsole.setText("Invalid input: N. Please input N >= 1.");
+    		return;
+    	}
     	
     	// initialize a map and a list
     	Map<String, Integer> map = new HashMap<String, Integer>();
@@ -602,7 +617,6 @@ public class Controller {
 	        s += "|----------------+------------------------+------------------------+----------------|\n";
         }
         s += "End of results\n";
-        s += "-------------------------------------------------------------------------------------\n";
     	textAreaConsole.setText(s);
     	
     /* TASK 3 Codes */	
