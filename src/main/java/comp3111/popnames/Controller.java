@@ -484,13 +484,28 @@ public class Controller {
         String gender = rb.getText();
 
         gender = gender.substring(0,1);
-        int starting_year = Integer.parseInt(y1R3.getText());
-        int ending_year = Integer.parseInt(y2R3.getText());
+        int starting_year = AnalyzeNames.returnYear(y1R3.getText());
+        int ending_year = AnalyzeNames.returnYear(y2R3.getText());
     	
         // Boundary Case
-    	if (starting_year < 1880 || ending_year > 2019 || starting_year >= ending_year)
+    	if (starting_year == 0 || ending_year == 0)
 		{
-			textAreaConsole.setText("Invalid Input.");
+			textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
+			return;
+		}
+    	if (starting_year == -2 || ending_year == -2)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR empty. Please input year.");
+			return;
+		}
+    	if (starting_year == -1 || ending_year == -1)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR. Please input year between 1880 and 2019.");
+			return;
+		}
+    	if (starting_year >= ending_year)
+		{
+			textAreaConsole.setText("Invalid Input: STARTINGYEAR greater than or equal to ENDINGYEAR.");
 			return;
 		}
     	
@@ -580,16 +595,16 @@ public class Controller {
         s += String.format("| %1$-15s", "Name");
         s += String.format("| %1$-13s%2$-10s", "Lowest Rank", "[in year]");
         s += String.format("| %1$-13s%2$-10s", "Highest Rank", "[in year]");
-        s += String.format("| %1$-25s", "Trend");
-        s += String.format("|\n| %1$-15s", name_rise);
+        s += String.format("| %1$-25s|\n", "Trend");
+        s += String.format("| %1$-15s", name_rise);
         s += String.format("| %1$-13s%2$-10s", rank_rise1, "[in " + year_rise1 + "]");
         s += String.format("| %1$-13s%2$-10s", rank_rise2, "[in " + year_rise2 + "]");
-        s += String.format("| %1$-25s", "rank up" + " " + "(" + rank_rise1 + " - " + rank_rise2 + ")");
-        s += String.format("|\n| %1$-15s", name_fall);
+        s += String.format("| %1$-25s|\n", "rank up" + " " + "(" + rank_rise1 + " - " + rank_rise2 + ")");
+        s += String.format("| %1$-15s", name_fall);
         s += String.format("| %1$-13s%2$-10s", rank_fall1, "[in " + year_fall1 + "]");
         s += String.format("| %1$-13s%2$-10s", rank_fall2, "[in " + year_fall2 + "]");
-        s += String.format("| %1$-25s", "rank down" + " " + "(" + rank_fall1 + " - " + rank_fall2 + ")");
-        s += "|\n-----------------------------------------------------------------------------------------------\n";
+        s += String.format("| %1$-25s|\n", "rank down" + " " + "(" + rank_fall1 + " - " + rank_fall2 + ")");
+        s += "-----------------------------------------------------------------------------------------------\n";
     	textAreaConsole.setText(s);
     }
 
@@ -713,15 +728,20 @@ public class Controller {
 			return;
     	}
     	
-    	if (textfieldA3iYOB.getText().isBlank())
-    	{
-			textAreaConsole.setText("Invalid Input. Please input Your Year of Birth.");
-			return;
-    	}
-        int iYOB = Integer.parseInt(textfieldA3iYOB.getText());
-        if (iYOB < 1880 || iYOB > 2019)
+        int iYOB = AnalyzeNames.returnYear(textfieldA3iYOB.getText());
+        if (iYOB == 0)
         {
-        	textAreaConsole.setText("Invalid Input. Please input Your Year of Birth again.");
+        	textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
+        	return;
+        }
+        if (iYOB == -2)
+        {
+        	textAreaConsole.setText("Invalid Input: YEAR empty. Please input year.");
+        	return;
+        }
+        if (iYOB == -1)
+        {
+        	textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
         	return;
         }
         
