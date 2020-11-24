@@ -1,5 +1,8 @@
 package comp3111.popnames;
 
+/**
+ * // TODO: Ryan Javadoc
+ */
 public class Profile {
 	
 	// DATA MEMBERS
@@ -14,7 +17,13 @@ public class Profile {
     
     // Constructors
 
-    // Profile Class Constructor with NAME
+    /**
+     * Profile Class Constructor with NAME
+     *
+     * @param yearOfBirth
+     * @param gender
+     * @param name
+     */
     Profile(int yearOfBirth, String gender, String name) {
         // initialize instance attributes
         this.name = name;
@@ -24,7 +33,13 @@ public class Profile {
         this.rank = AnalyzeNames.getRank(yearOfBirth, name, gender);
     }
 
-    // Profile Class Constructor with RANK
+    /**
+     * Profile Class Constructor with RANK
+     *
+     * @param yearOfBirth
+     * @param gender
+     * @param rank
+     */
     Profile(int yearOfBirth, String gender, int rank) {
         // initialize instance attributes
         this.yearOfBirth = yearOfBirth;

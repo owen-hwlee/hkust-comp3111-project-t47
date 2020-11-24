@@ -47,6 +47,17 @@ public class AnalyzeNamesTest {
         String[] names = a.NK_T4("Kevin", "Carmen", 2000, 2000, 2019);
         assertTrue(names[0].equals("Luke"));        // tests boy baby name
         assertTrue(names[1].equals("Camilla"));     // tests girl baby name
+        // TODO: Owen other cases
+    }
+
+    @Test
+    public void testNK_T5() {
+        // TODO: Ryan UnitTesting
+    }
+
+    @Test
+    public void testNK_T6() {
+        // TODO: Herman UnitTesting
     }
 
 }

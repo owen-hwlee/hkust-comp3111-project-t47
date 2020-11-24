@@ -72,6 +72,32 @@ public class JavaFXTest extends ApplicationTest {
 		clickOn("#buttonR1");
 		String s2 = t.getText();
 		assertTrue(s1.equals(s2));
+		// TODO: Owen UnitTesting
+	}
+
+	@Test
+	public void testButtonR2() {
+		// TODO: Ryan UnitTesting
+	}
+
+	@Test
+	public void testButtonR3() {
+		// TODO: Herman UnitTesting
+	}
+
+	@Test
+	public void testButtonA1() {
+		// TODO: Owen UnitTesting
+	}
+
+	@Test
+	public void testButtonA2() {
+		// TODO: Ryan UnitTesting
+	}
+
+	@Test
+	public void testButtonA3() {
+		// TODO: Herman UnitTesting
 	}
 
 }
