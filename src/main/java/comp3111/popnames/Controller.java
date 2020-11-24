@@ -695,8 +695,6 @@ public class Controller {
 
         String oName = AnalyzeNames.NK_T5(iName, iGender, iYOB, iGenderMate, iPreference);
 
-        // TODO
-
         textAreaConsole.setText("The soulmate name will be "+ oName);
     }
 
