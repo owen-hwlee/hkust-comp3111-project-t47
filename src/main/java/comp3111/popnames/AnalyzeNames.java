@@ -3,10 +3,24 @@ package comp3111.popnames;
 import org.apache.commons.csv.*;
 import edu.duke.*;
 
+/**
+ * Aesthetic Class containing helper functions useful for the entire programme
+ */
 public class AnalyzeNames {
 
+	/**
+	 * Constant integer that stores the smallest year available in the dataset.
+	 * Current value is 1880.
+	 *
+	 */
 	public static final int LOWER_YEAR = 1880;
+	/**
+	 * Constant integer that stores the largest year available in the dataset.
+	 * Current value is 2019.
+	 *
+	 */
 	public static final int UPPER_YEAR = 2019;
+
 
 	public static CSVParser getFileParser(int year) {
      FileResource fr = new FileResource(String.format("dataset/yob%s.csv", year));
@@ -48,7 +62,14 @@ public class AnalyzeNames {
 		
 		return oReport;
 	}
-	
+
+	/**
+	 * // TODO: Ryan Javadoc
+	 *
+	 * @param year
+	 * @param gender
+	 * @return
+	 */
 	public static int getTotalByGender(int year, String gender) {
 		
 		
@@ -74,6 +95,8 @@ public class AnalyzeNames {
 		}
 		return 0;
 	}
+
+
 	 public static int getRank(int year, String name, String gender) {
 	     boolean found = false;
 	     int oRank = 0;
@@ -120,7 +143,8 @@ public class AnalyzeNames {
 	     else
 	     	return "information on the name at the specified rank is not available";
 	 }
-	 
+
+
 	 public static int getFreq(int yearOfBirth, String name, String gender)
 	 {
 	     boolean found = false;
@@ -139,7 +163,8 @@ public class AnalyzeNames {
 		    else
 		    	return -1;
 	 }
-	 
+
+
 	 public static int getFreq(int yearOfBirth, int rank, String gender)
 	 {
          boolean found = false;
@@ -168,6 +193,18 @@ public class AnalyzeNames {
 	 }
 	 */
 
+	/**
+	 * This is the implementation of the newly and carefully designed NK-T4 Algorithm of Universal Compatibility.
+	 * It takes names of parents, year of birth of parents, and an optional vintage year as input.
+	 * It returns a String array that contains recommended boy and girl names.
+	 *
+	 * @param dadName Name of dad
+	 * @param momName Name of mom
+	 * @param dadYOB Year of birth of dad
+	 * @param momYOB Year of birth of mom
+	 * @param vintageYear Optional vintage year input
+	 * @return Array of String containing one boy name and one girl name
+	 */
 	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB, int vintageYear) {
 		 String[] kidNames = new String[2];		// kidNames[0] = boyName, kidNames[1] = girlName
 
@@ -185,9 +222,18 @@ public class AnalyzeNames {
 		 return kidNames;
 	 }
 
+	/**
+	 * // TODO: Ryan Javadoc
+	 *
+	 * @param iName
+	 * @param iGender
+	 * @param iYOB
+	 * @param iGenderMate
+	 * @param iPreference
+	 * @return
+	 */
 	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
 		 String oName = "";
-		 // TODO
 		 int oRank;
 		 int oYOB = 0;
 //		 oRank = this.getRank()
@@ -208,9 +254,19 @@ public class AnalyzeNames {
 		 return oName;
 	 }
 
+	/**
+	 * // TODO: Herman Javadoc
+	 *
+	 * @param iName
+	 * @param iGender
+	 * @param iYOB
+	 * @param iNameMate
+	 * @param iGenderMate
+	 * @param iPreference
+	 * @return
+	 */
 	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, String iPreference) {
 		 int oScore = -1;
-		 // TODO
 		 double oRank, oRankMate;
 		 int oYOB;
 		 oRank = getRank(iYOB, iName, iGender);
@@ -232,6 +288,12 @@ public class AnalyzeNames {
 		 return oScore;
 	 }
 
+	/**
+	 * // TODO: Owen Javadoc
+	 *
+	 * @param yob
+	 * @return
+	 */
 	 public static int returnYear(String yob) {
 		 try {
 		 	 int year = Integer.parseInt(yob);
@@ -245,6 +307,12 @@ public class AnalyzeNames {
 		 }
 	 }
 
+	/**
+	 * // TODO: Herman Javadoc
+	 *
+	 * @param number
+	 * @return
+	 */
 	 public static int returnNumber(String number) {
 	 	try {
 	 		int n = Integer.parseInt(number);

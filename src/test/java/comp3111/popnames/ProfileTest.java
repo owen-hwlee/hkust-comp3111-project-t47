@@ -10,6 +10,7 @@ public class ProfileTest {
         Profile howard = new Profile(2001, "M", 646);
         String s = "Howard";
         assertTrue(s.equals(howard.getName()));
+        // TODO: Owen more cases
     }
 
     @Test
@@ -17,6 +18,7 @@ public class ProfileTest {
         Profile marco = new Profile(2000, "M", "Marco");
         String s = "M";
         assertTrue(s.equals(marco.getGender()));
+        // TODO: Ryan more cases
     }
 
     @Test
@@ -24,13 +26,15 @@ public class ProfileTest {
         Profile victor = new Profile(2000, "M", "Victor");
         int y = 2000;
         assertEquals(y, victor.getYearOfBirth());
+        // TODO: Herman more cases
     }
 
     @Test
     public void testProfileGetFreq(){
-        Profile peter = new Profile(2000, "M", "Peterr");
-        int f = -1;
+        Profile peter = new Profile(2000, "M", "Peter");
+        int f = 3146;
         assertEquals(f, peter.getFreq());
+        // TODO: Ryan more cases
     }
 
     @Test
@@ -38,6 +42,7 @@ public class ProfileTest {
         Profile francis = new Profile(2000, "M", "Francis");
         int r = 435;
         assertEquals(r, francis.getRank());
+        // TODO: Herman more cases
     }
 
 }
