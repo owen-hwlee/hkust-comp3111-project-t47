@@ -594,8 +594,8 @@ public class Controller {
         s += String.format("| %1$-15s|\n", "Trend");
         for (int i = 0; i < name_output.size(); i++) {
 	        s += String.format("| %1$-15s", name_output.toArray()[i]);
-	        s += String.format("| %1$-13s%2$-10s", rank_lowest.toArray()[i], "[in " + year_lowest.toArray()[i] + "]");
-	        s += String.format("| %1$-13s%2$-10s", rank_highest.toArray()[i], "[in " + year_highest.toArray()[i] + "]");
+	        s += String.format("| %1$-13s%2$-10s", rank_lowest.get(i), "[in " + year_lowest.get(i) + "]");
+	        s += String.format("| %1$-13s%2$-10s", rank_highest.get(i), "[in " + year_highest.get(i) + "]");
 	        String trend = year_lowest.get(i) < year_highest.get(i) ? "UP" : year_lowest.get(i) > year_highest.get(i) ? "DOWN" : "FLAT";
 	        s += String.format("| %1$-15s|\n", trend);
         }
