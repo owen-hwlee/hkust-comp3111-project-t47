@@ -40,4 +40,13 @@ public class AnalyzeNamesTest {
     	assertTrue(name.equals("Desire"));
     }
 
+
+    @Test
+    public void testNK_T4() {
+        AnalyzeNames a = new AnalyzeNames();
+        String[] names = a.NK_T4("Kevin", "Carmen", 2000, 2000, 2019);
+        assertTrue(names[0].equals("Luke"));        // tests boy baby name
+        assertTrue(names[1].equals("Camilla"));     // tests girl baby name
+    }
+
 }

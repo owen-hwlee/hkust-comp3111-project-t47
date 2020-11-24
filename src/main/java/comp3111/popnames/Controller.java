@@ -614,6 +614,14 @@ public class Controller {
 
         // validate input
 
+        // validate dadName
+        if (dadName.equals("")) {
+            s = "Empty input! Please enter name of dad.";
+        } else
+        // validate momName
+        if (momName.equals("")) {
+            s = "Empty input! Please enter name of mom.";
+        } else
         // validate dadYOB
         if (dadYOB == 0) {
             s = "Invalid input range! Please enter a valid year for year of birth of dad (1880 - 2019).";
