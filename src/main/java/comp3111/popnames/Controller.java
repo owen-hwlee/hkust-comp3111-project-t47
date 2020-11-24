@@ -592,13 +592,16 @@ public class Controller {
         s += String.format("| %1$-13s%2$-10s", "Lowest Rank", "[in year]");
         s += String.format("| %1$-13s%2$-10s", "Highest Rank", "[in year]");
         s += String.format("| %1$-15s|\n", "Trend");
+        s += "|----------------+------------------------+------------------------+----------------|\n";
         for (int i = 0; i < name_output.size(); i++) {
 	        s += String.format("| %1$-15s", name_output.toArray()[i]);
 	        s += String.format("| %1$-13s%2$-10s", rank_lowest.get(i), "[in " + year_lowest.get(i) + "]");
 	        s += String.format("| %1$-13s%2$-10s", rank_highest.get(i), "[in " + year_highest.get(i) + "]");
 	        String trend = year_lowest.get(i) < year_highest.get(i) ? "UP" : year_lowest.get(i) > year_highest.get(i) ? "DOWN" : "FLAT";
 	        s += String.format("| %1$-15s|\n", trend);
+	        s += "|----------------+------------------------+------------------------+----------------|\n";
         }
+        s += "End of results\n";
         s += "-------------------------------------------------------------------------------------\n";
     	textAreaConsole.setText(s);
     	
