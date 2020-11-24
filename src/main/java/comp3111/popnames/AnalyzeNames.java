@@ -226,8 +226,9 @@ public class AnalyzeNames {
 		 
 		 double x = Math.abs(oRank - oRankMate)/oRank;
 		 x = (1-x)*100;
-		 
 		 oScore = (int) x;
+		 
+		 oScore = Math.abs(oScore) % 101;				// customized algorithm which is more realistic
 		 return oScore;
 	 }
 

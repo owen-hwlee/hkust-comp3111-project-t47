@@ -85,6 +85,9 @@ public class Controller {
     
     @FXML
     private TextField y2R3;
+    
+    @FXML
+    private TextField R3_n;
 
     @FXML
     private Button buttonR3;
@@ -484,13 +487,153 @@ public class Controller {
         String gender = rb.getText();
 
         gender = gender.substring(0,1);
-        int starting_year = Integer.parseInt(y1R3.getText());
-        int ending_year = Integer.parseInt(y2R3.getText());
+        int starting_year = AnalyzeNames.returnYear(y1R3.getText());
+        int ending_year = AnalyzeNames.returnYear(y2R3.getText());
+        int n = Integer.parseInt(R3_n.getText());
     	
         // Boundary Case
-    	if (starting_year < 1880 || ending_year > 2019 || starting_year >= ending_year)
+    	if (starting_year == 0 || ending_year == 0)
 		{
-			textAreaConsole.setText("Invalid Input.");
+			textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
+			return;
+		}
+    	if (starting_year == -2 || ending_year == -2)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR empty. Please input year.");
+			return;
+		}
+    	if (starting_year == -1 || ending_year == -1)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR. Please input year between 1880 and 2019.");
+			return;
+		}
+    	if (starting_year >= ending_year)
+		{
+			textAreaConsole.setText("Invalid Input: STARTINGYEAR greater than or equal to ENDINGYEAR.");
+			return;
+		}
+    	
+    	// initialize a map and a list
+    	Map<String, Integer> map = new HashMap<String, Integer>();
+    	List<String> names_appeared = new ArrayList<String>();
+    	for (int i = starting_year; i <= ending_year; i++)
+    	{
+    		int rank = 1;
+    		for (CSVRecord rec : AnalyzeNames.getFileParser(i))
+    		{
+    			if (rec.get(1).equals(gender))
+    			{
+    				if (!names_appeared.contains(rec.get(0)))
+    					names_appeared.add(rec.get(0));
+    				String key = rec.get(0) + "#" + Integer.toString(i);
+    				map.put(key, rank);
+    				rank++;
+    			}
+    		}
+    	}
+    	
+    	List<String> name_output = new ArrayList<String>();
+    	List<Integer> rank_lowest = new ArrayList<Integer>();
+    	List<Integer> rank_highest = new ArrayList<Integer>();
+    	List<Integer> year_lowest = new ArrayList<Integer>();
+    	List<Integer> year_highest = new ArrayList<Integer>();
+    	
+    	for (String name : names_appeared)
+    	{
+        	boolean maintain = true;
+        	int rank;
+        	int t_rank_low = -1, t_rank_high = -1, t_year_low = -1, t_year_high = -1;
+        	
+    		for (int p = starting_year; p <= ending_year; p++)
+    		{
+    			String key_p = name + "#" + Integer.toString(p);
+    			if (!map.containsKey(key_p))
+    				continue;
+    			rank = map.get(key_p);
+    			
+    			// break if one year is not within top n (i.e. worse than n)
+    			if (rank > n)
+    			{
+    				maintain = false;
+    				break;
+    			}
+    			// base case if not yet apply any value
+    			if (t_rank_low == -1 && t_rank_high == -1 && t_year_low == -1 && t_year_high == -1)
+    			{
+    				t_rank_low = t_rank_high = rank; t_year_low = t_year_high = p;
+    				continue;
+    			}
+    			// compare case
+    			if (rank < t_rank_high)						// if rank is better than previous case
+    			{
+    				t_rank_high = rank; t_year_high = p;
+    			}
+    			else if (rank > t_rank_low)					// if rank is worse than previous case
+    			{
+    				t_rank_low = rank; t_year_low = p;
+    			}
+    		}
+    		if (maintain)
+    		{
+    			name_output.add(name);
+    			rank_lowest.add(t_rank_low);
+    			rank_highest.add(t_rank_high);
+    			year_lowest.add(t_year_low);
+    			year_highest.add(t_year_high);
+    		}
+    	}
+        
+        String s = name_output.size() + " names are found to be maintained at a high level of popularity within Top " + n;
+        s += " over the period from year " + starting_year + " to year " + ending_year + ".\n\n";
+
+        s += "Detailed results: (in table form)\n";
+        s += "-------------------------------------------------------------------------------------\n";
+        s += String.format("| %1$-15s", "Name");
+        s += String.format("| %1$-13s%2$-10s", "Lowest Rank", "[in year]");
+        s += String.format("| %1$-13s%2$-10s", "Highest Rank", "[in year]");
+        s += String.format("| %1$-15s|\n", "Trend");
+        s += "|----------------+------------------------+------------------------+----------------|\n";
+        for (int i = 0; i < name_output.size(); i++) {
+	        s += String.format("| %1$-15s", name_output.toArray()[i]);
+	        s += String.format("| %1$-13s%2$-10s", rank_lowest.get(i), "[in " + year_lowest.get(i) + "]");
+	        s += String.format("| %1$-13s%2$-10s", rank_highest.get(i), "[in " + year_highest.get(i) + "]");
+	        String trend = year_lowest.get(i) < year_highest.get(i) ? "UP" : year_lowest.get(i) > year_highest.get(i) ? "DOWN" : "FLAT";
+	        s += String.format("| %1$-15s|\n", trend);
+	        s += "|----------------+------------------------+------------------------+----------------|\n";
+        }
+        s += "End of results\n";
+        s += "-------------------------------------------------------------------------------------\n";
+    	textAreaConsole.setText(s);
+    	
+    /* TASK 3 Codes */	
+    /*
+        // Parse Data from UI
+        RadioButton rb = (RadioButton)(T111.getSelectedToggle());
+        String gender = rb.getText();
+
+        gender = gender.substring(0,1);
+        int starting_year = AnalyzeNames.returnYear(y1R3.getText());
+        int ending_year = AnalyzeNames.returnYear(y2R3.getText());
+    	
+        // Boundary Case
+    	if (starting_year == 0 || ending_year == 0)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
+			return;
+		}
+    	if (starting_year == -2 || ending_year == -2)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR empty. Please input year.");
+			return;
+		}
+    	if (starting_year == -1 || ending_year == -1)
+		{
+			textAreaConsole.setText("Invalid Input: YEAR. Please input year between 1880 and 2019.");
+			return;
+		}
+    	if (starting_year >= ending_year)
+		{
+			textAreaConsole.setText("Invalid Input: STARTINGYEAR greater than or equal to ENDINGYEAR.");
 			return;
 		}
     	
@@ -580,17 +723,18 @@ public class Controller {
         s += String.format("| %1$-15s", "Name");
         s += String.format("| %1$-13s%2$-10s", "Lowest Rank", "[in year]");
         s += String.format("| %1$-13s%2$-10s", "Highest Rank", "[in year]");
-        s += String.format("| %1$-25s", "Trend");
-        s += String.format("|\n| %1$-15s", name_rise);
+        s += String.format("| %1$-25s|\n", "Trend");
+        s += String.format("| %1$-15s", name_rise);
         s += String.format("| %1$-13s%2$-10s", rank_rise1, "[in " + year_rise1 + "]");
         s += String.format("| %1$-13s%2$-10s", rank_rise2, "[in " + year_rise2 + "]");
-        s += String.format("| %1$-25s", "rank up" + " " + "(" + rank_rise1 + " - " + rank_rise2 + ")");
-        s += String.format("|\n| %1$-15s", name_fall);
+        s += String.format("| %1$-25s|\n", "rank up" + " " + "(" + rank_rise1 + " - " + rank_rise2 + ")");
+        s += String.format("| %1$-15s", name_fall);
         s += String.format("| %1$-13s%2$-10s", rank_fall1, "[in " + year_fall1 + "]");
         s += String.format("| %1$-13s%2$-10s", rank_fall2, "[in " + year_fall2 + "]");
-        s += String.format("| %1$-25s", "rank down" + " " + "(" + rank_fall1 + " - " + rank_fall2 + ")");
-        s += "|\n-----------------------------------------------------------------------------------------------\n";
+        s += String.format("| %1$-25s|\n", "rank down" + " " + "(" + rank_fall1 + " - " + rank_fall2 + ")");
+        s += "-----------------------------------------------------------------------------------------------\n";
     	textAreaConsole.setText(s);
+    */
     }
 
     /**
@@ -721,15 +865,20 @@ public class Controller {
 			return;
     	}
     	
-    	if (textfieldA3iYOB.getText().isBlank())
-    	{
-			textAreaConsole.setText("Invalid Input. Please input Your Year of Birth.");
-			return;
-    	}
-        int iYOB = Integer.parseInt(textfieldA3iYOB.getText());
-        if (iYOB < 1880 || iYOB > 2019)
+        int iYOB = AnalyzeNames.returnYear(textfieldA3iYOB.getText());
+        if (iYOB == 0)
         {
-        	textAreaConsole.setText("Invalid Input. Please input Your Year of Birth again.");
+        	textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
+        	return;
+        }
+        if (iYOB == -2)
+        {
+        	textAreaConsole.setText("Invalid Input: YEAR empty. Please input year.");
+        	return;
+        }
+        if (iYOB == -1)
+        {
+        	textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
         	return;
         }
         
