@@ -348,8 +348,6 @@ public class Controller {
             s = String.format("Over the period %d to %d, %s for %s has hold the top spot most often for a total of %d times.\n\n",
                     y1, y2, names[index], gender.equals("M") ? "males" : "females", k);
 
-            // TODO: Owen, consider case where there are more than one most frequent item
-
             // detailed results
 
             /*
