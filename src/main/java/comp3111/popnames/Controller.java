@@ -348,8 +348,6 @@ public class Controller {
             s = String.format("Over the period %d to %d, %s for %s has hold the top spot most often for a total of %d times.\n\n",
                     y1, y2, names[index], gender.equals("M") ? "males" : "females", k);
 
-            // TODO: Owen, consider case where there are more than one most frequent item
-
             // detailed results
 
             /*
@@ -538,9 +536,13 @@ public class Controller {
     		{
     			if (rec.get(1).equals(gender))
     			{
-    				if (!names_appeared.contains(rec.get(0)))
-    					names_appeared.add(rec.get(0));
-    				String key = rec.get(0) + "#" + Integer.toString(i);
+                    String n0 = rec.get(0);
+                    if (n0.substring(0, 1).equals("\uFEFF")) {
+                        n0 = n0.substring(1);
+                    }
+    				if (!names_appeared.contains(n0))
+    					names_appeared.add(n0);
+    				String key = n0 + "#" + Integer.toString(i);
     				map.put(key, rank);
     				rank++;
     			}

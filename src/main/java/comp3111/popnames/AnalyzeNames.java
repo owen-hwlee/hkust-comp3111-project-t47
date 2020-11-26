@@ -14,6 +14,7 @@ public class AnalyzeNames {
 	 *
 	 */
 	public static final int LOWER_YEAR = 1880;
+
 	/**
 	 * Constant integer that stores the largest year available in the dataset.
 	 * Current value is 2019.
@@ -105,7 +106,11 @@ public class AnalyzeNames {
 	         // Increment rank if gender matches param
 	         if (rec.get(1).equals(gender)) {
 	             // Return rank if name matches param
-	             if (rec.get(0).equals(name)) {
+				 String n = rec.get(0);
+				 if (n.substring(0, 1).equals("\uFEFF")) {
+				 	n = n.substring(1);
+				 }
+	             if (n.equals(name)) {
 	             	found = true;
 	             	oRank = rank;
 	             	break;
@@ -134,6 +139,9 @@ public class AnalyzeNames {
 	            if (currentRank == rank) {
 	             	found = true;
 	             	oName = rec.get(0);
+	             	if (oName.substring(0, 1).equals("\uFEFF")) {
+	             		oName = oName.substring(1);
+					}
 	                break;
 	            }
 	         }
@@ -151,7 +159,11 @@ public class AnalyzeNames {
 		    int oFreq = 0;
 		    for (CSVRecord rec : getFileParser(yearOfBirth)) {
 		        if (rec.get(1).equals(gender)) {
-		            if (rec.get(0).equals(name)) {
+					String n = rec.get(0);
+					if (n.substring(0, 1).equals("\uFEFF")) {
+						n = n.substring(1);
+					}
+		            if (n.equals(name)) {
 		            	found = true;
 		            	oFreq = Integer.parseInt(rec.get(2));
 		             	break;
