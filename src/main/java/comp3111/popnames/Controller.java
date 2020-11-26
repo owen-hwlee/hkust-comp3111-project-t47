@@ -536,9 +536,13 @@ public class Controller {
     		{
     			if (rec.get(1).equals(gender))
     			{
-    				if (!names_appeared.contains(rec.get(0)))
-    					names_appeared.add(rec.get(0));
-    				String key = rec.get(0) + "#" + Integer.toString(i);
+                    String n0 = rec.get(0);
+                    if (n0.substring(0, 1).equals("\uFEFF")) {
+                        n0 = n0.substring(1);
+                    }
+    				if (!names_appeared.contains(n0))
+    					names_appeared.add(n0);
+    				String key = n0 + "#" + Integer.toString(i);
     				map.put(key, rank);
     				rank++;
     			}
