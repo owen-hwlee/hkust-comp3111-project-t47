@@ -42,7 +42,9 @@ public class AnalyzeNamesTest {
 
     @Test
     public void testGetFreqName() {
-        // TODO: Herman UnitTesting
+        AnalyzeNames a = new AnalyzeNames();
+        int freq = a.getFreq(1941, "Mary", "F");
+        assertTrue(freq==58031);
     }
 
     @Test
@@ -68,7 +70,9 @@ public class AnalyzeNamesTest {
 
     @Test
     public void testNK_T6() {
-        // TODO: Herman UnitTesting
+        AnalyzeNames a = new AnalyzeNames();
+        int score = a.NK_T6("Herman", "M", 2000, "Mary", "F", "Younger");
+        assertTrue(score == 4);
     }
 
     @Test

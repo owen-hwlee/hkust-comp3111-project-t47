@@ -107,7 +107,7 @@
                                     </RadioButton>
                                     <RadioButton layoutX="290.0" layoutY="104.0" mnemonicParsing="false" text="Female" toggleGroup="$T111" />
                                     <Label layoutX="368.0" layoutY="104.0" text="Level of Popularity N:" />
-                                    <TextField fx:id="R3_n" layoutX="490.0" layoutY="100.0" prefHeight="26.0" prefWidth="43.0" text="100" />
+                                    <TextField fx:id="R3_n" layoutX="490.0" layoutY="100.0" prefHeight="26.0" prefWidth="43.0" text="5" />
                                     <Label layoutX="112.0" layoutY="138.0" text="Period (1880 - 2019): " />
                                     <Label layoutX="274.0" layoutY="136.0" text="to" />
                                     <TextField fx:id="y1R3" layoutX="226.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
@@ -187,8 +187,8 @@
                               <Label layoutX="300.0" layoutY="127.0" text="Your year of birth:" />
                               <Label layoutX="75.0" layoutY="237.0" text="Soulmate age preference:" />
                               <Button fx:id="buttonA3" layoutX="75.0" layoutY="273.0" mnemonicParsing="false" onAction="#application3" text="OUTPUT" />
-                              <TextField fx:id="textfieldA3iName" layoutX="156.0" layoutY="123.0" prefHeight="25.0" prefWidth="110.0" />
-                              <TextField fx:id="textfieldA3iYOB" layoutX="412.0" layoutY="123.0" prefHeight="25.0" prefWidth="56.0" />
+                              <TextField fx:id="textfieldA3iName" layoutX="156.0" layoutY="123.0" prefHeight="25.0" prefWidth="110.0" text="Herman" />
+                              <TextField fx:id="textfieldA3iYOB" layoutX="412.0" layoutY="123.0" prefHeight="25.0" prefWidth="56.0" text="2000" />
                               <RadioButton layoutX="168.0" layoutY="166.0" mnemonicParsing="false" selected="true" text="Male">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="T6_1" />
@@ -208,7 +208,7 @@
                               </RadioButton>
                               <RadioButton layoutX="319.0" layoutY="237.0" mnemonicParsing="false" text="Older" toggleGroup="$T6_3" />
                               <Label layoutX="75.0" layoutY="202.0" text="Soulmate's name:" />
-                              <TextField fx:id="textfieldA3iNameMate" layoutX="188.0" layoutY="198.0" prefHeight="25.0" prefWidth="110.0" />
+                              <TextField fx:id="textfieldA3iNameMate" layoutX="188.0" layoutY="198.0" prefHeight="25.0" prefWidth="110.0" text="Mary" />
                               <TextArea layoutX="69.0" layoutY="28.0" prefHeight="78.0" prefWidth="581.0" text="Predict a score of compatibility (0%: Not Compatible; 100%: Perfect Match) between you and your soulmate, by specifying both of your names, your year of birth and both of your gender. This feature utilizes the newly and carefully designed NK-T6 Predicting Algorithm." wrapText="true" />
                            </children>
                         </AnchorPane>
