@@ -894,7 +894,7 @@ public class Controller {
         }
         if (iYOB == -1)
         {
-        	textAreaConsole.setText("Invalid Input: YEAR out of range. Please input year between 1880 and 2019.");
+        	textAreaConsole.setText("Invalid Input: YEAR. Please input year between 1880 and 2019.");
         	return;
         }
         

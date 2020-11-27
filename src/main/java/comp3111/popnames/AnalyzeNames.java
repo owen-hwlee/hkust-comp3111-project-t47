@@ -267,14 +267,17 @@ public class AnalyzeNames {
 	 }
 
 	/**
-	 * // TODO: Herman Javadoc
-	 *
-	 * @param iName
-	 * @param iGender
-	 * @param iYOB
-	 * @param iNameMate
-	 * @param iGenderMate
-	 * @param iPreference
+	 * This is the implementation of the newly and carefully designed NK-T6 Algorithm of Universal Compatibility.
+	 * It takes user's name, year of birth, gender and soulmate's name and gender, and user's age preference as input.
+	 * The algorithm then considers the frequency and ranking of the names to calculate a score.
+	 * It returns a score of compatibility of the user and his/her soulmate.
+	 * 
+	 * @param iName	User's Name
+	 * @param iGender User's Gender
+	 * @param iYOB User's Year of Birth
+	 * @param iNameMate Soulmate's Name
+	 * @param iGenderMate Soulmate's Gender
+	 * @param iPreference User's Age Preference
 	 * @return
 	 */
 	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, String iPreference) {
@@ -324,7 +327,11 @@ public class AnalyzeNames {
 	 }
 
 	/**
-	 * // TODO: Herman Javadoc
+	 * This is a helper function to parse String inputs for any numerical number which should be greater or equal to 1
+	 * It returns the corresponding number in Integer type.
+	 * It returns 0 for out of range input.
+	 * It returns -1 for invalid non-numerical inputs.
+	 * It returns -2 for empty inputs.
 	 *
 	 * @param number
 	 * @return

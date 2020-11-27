@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import org.w3c.dom.Text;
+//import org.w3c.dom.Text;
 
 public class JavaFXTest extends ApplicationTest {
 
@@ -133,7 +133,67 @@ public class JavaFXTest extends ApplicationTest {
 
 	@Test
 	public void testButtonR3() {
-		// TODO: Herman UnitTesting
+		clickOn("#tabReport3");
+		// default value
+		clickOn("#buttonR3");
+		String s1 = t.getText();
+		String s2 = "5 names are found to be maintained at a high level of popularity within Top 5 over the period from year 1941 to year 1945.\n"
+				+ "\n" +
+				"Detailed results: (in table form)\n" +
+				"-------------------------------------------------------------------------------------\n" +
+				"| Name           | Lowest Rank  [in year] | Highest Rank [in year] | Trend          |\n" +
+				"|----------------+------------------------+------------------------+----------------|\n" +
+				"| James          | 1            [in 1941] | 1            [in 1941] | FLAT           |\n" +
+				"|----------------+------------------------+------------------------+----------------|\n" +
+				"| Robert         | 2            [in 1941] | 2            [in 1941] | FLAT           |\n" +
+				"|----------------+------------------------+------------------------+----------------|\n" +
+				"| John           | 3            [in 1941] | 3            [in 1941] | FLAT           |\n" +
+				"|----------------+------------------------+------------------------+----------------|\n" +
+				"| William        | 4            [in 1941] | 4            [in 1941] | FLAT           |\n" +
+				"|----------------+------------------------+------------------------+----------------|\n" +
+				"| Richard        | 5            [in 1941] | 5            [in 1941] | FLAT           |\n" +
+				"|----------------+------------------------+------------------------+----------------|\n" +
+				"End of results\n";
+		assertTrue(s1.equals(s2));
+
+		// check different values
+
+		/*
+		 * t = (TextArea)s.lookup("#textAreaConsole");
+		 */
+
+		// Case: startingYear out of range
+		TextField tf = (TextField)s.lookup("#y1R3");
+		tf.setText("0");
+		clickOn("#buttonR3");
+		s1 = t.getText();
+		s2 = "Invalid Input: YEAR out of range. Please input year between 1880 and 2019.";
+		assertTrue(s1.equals(s2));
+
+		// Case: endingYear is empty
+		tf.setText("1941");
+		tf = (TextField)s.lookup("#y2R3");
+		tf.setText("");
+		clickOn("#buttonR3");
+		s1 = t.getText();
+		s2 = "Invalid Input: YEAR empty. Please input year.";
+		assertTrue(s1.equals(s2));
+
+		// Case: y1 > y2
+		tf.setText("1930");
+		clickOn("#buttonR3");
+		s1 = t.getText();
+		s2 = "Invalid Input: Period. Please ensure StartingYear < EndingYear.";
+		assertTrue(s1.equals(s2));
+
+		// Case: n < 1
+		tf.setText("1945");
+		tf = (TextField)s.lookup("#R3_n");
+		tf.setText("0");
+		clickOn("#buttonR3");
+		s1 = t.getText();
+		s2 = "Invalid input: N out of range. Please input N >= 1";
+		assertTrue(s1.equals(s2));
 	}
 
 	@Test
@@ -199,7 +259,46 @@ public class JavaFXTest extends ApplicationTest {
 
 	@Test
 	public void testButtonA3() {
-		// TODO: Herman UnitTesting
+		clickOn("#tabApp3");
+		clickOn("#buttonA3");
+		String s1 = t.getText();
+		String s2 = "Score of Compatibility = 4%";
+		assertTrue(s1.equals(s2));
+
+		// check other cases
+
+		// Case: empty user name
+		TextField tf = (TextField)s.lookup("#textfieldA3iName");
+		tf.setText("");
+		clickOn("#buttonA3");
+		s1 = t.getText();
+		s2 = "Invalid Input. Please input Your Name.";
+		assertTrue(s1.equals(s2));
+
+		// Case: empty soulmate's name
+		tf.setText("Herman");
+		tf = (TextField)s.lookup("#textfieldA3iNameMate");
+		tf.setText("");
+		clickOn("#buttonA3");
+		s1 = t.getText();
+		s2 = "Invalid Input. Please input Soulmate's Name.";
+		assertTrue(s1.equals(s2));
+
+		// Case: empty iYOB
+		tf.setText("Mary");
+		tf = (TextField)s.lookup("#textfieldA3iYOB");
+		tf.setText("");
+		clickOn("#buttonA3");
+		s1 = t.getText();
+		s2 = "Invalid Input: YEAR empty. Please input year.";
+		assertTrue(s1.equals(s2));
+
+		// Case: invalid iYOB
+		tf.setText("twenty");
+		clickOn("#buttonA3");
+		s1 = t.getText();
+		s2 = "Invalid Input: YEAR. Please input year between 1880 and 2019.";
+		assertTrue(s1.equals(s2));
 	}
 
 }
