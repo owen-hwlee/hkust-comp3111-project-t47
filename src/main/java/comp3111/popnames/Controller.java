@@ -409,6 +409,14 @@ public class Controller {
         	textAreaConsole.setText("Please input the year");
         	return;
         }
+//        int starting_year = AnalyzeNames.returnYear(textfieldR2FirstYear.getText());
+//        int ending_year = AnalyzeNames.returnYear(textfieldR2LastYear.getText());
+//        if (starting_year == -1 || ending_year == -1)
+//		{
+//			textAreaConsole.setText("Invalid Year. Please input year between 1880 and 2019.");
+//			return;
+//		}
+        
         double temp = Double.parseDouble(textfieldR2FirstYear.getText());
         double temp1 = Double.parseDouble(textfieldR2LastYear.getText());
         if (temp%1 !=0 || temp1%1 !=0) {
@@ -832,6 +840,14 @@ public class Controller {
         	textAreaConsole.setText("Please input your year of birth");
     		return;
         }
+//        int iYOBB = AnalyzeNames.returnYear(textfieldA2iYOB.getText());
+//        if (iYOBB == -1)
+//        {
+//        	textAreaConsole.setText("Invalid Year. Please input year between 1880 and 2019.");
+//        	return;
+//        }
+        
+        
         double temp = Double.parseDouble(textfieldA2iYOB.getText());
         if (temp%1 !=0) {
         	textAreaConsole.setText("Please input an integer for the year of birth");

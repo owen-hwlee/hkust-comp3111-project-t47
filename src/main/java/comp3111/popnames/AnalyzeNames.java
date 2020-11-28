@@ -65,11 +65,13 @@ public class AnalyzeNames {
 	}
 
 	/**
-	 * // TODO: Ryan Javadoc
+	 * // 
+	 *This function is used to return the total number of boys or girls born in the specific year.
 	 *
-	 * @param year
-	 * @param gender
-	 * @return
+	 *
+	 * @param year birth of year
+	 * @param gender gender of baby
+	 * @return total number of boys or girls
 	 */
 	public static int getTotalByGender(int year, String gender) {
 		
@@ -235,7 +237,10 @@ public class AnalyzeNames {
 	 }
 
 	/**
-	 * // TODO: Ryan Javadoc
+	 * //
+	 *This is the implementation of the newly and carefully designed NK-T5 Algorithm.
+	 *It takes user's name, year of birth, gender, preference and soulmate's gender as input.
+	 *It returns the soulmate's name.
 	 *
 	 * @param iName
 	 * @param iGender
