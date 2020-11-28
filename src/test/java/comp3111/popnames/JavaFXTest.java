@@ -153,36 +153,36 @@ public class JavaFXTest extends ApplicationTest {
 //		 * t = (TextArea)s.lookup("#textAreaConsole");
 //		 */
 //
-//		// Case: Empty name
-//		TextField tf = (TextField)s.lookup("#textfieldR2Name");
-//		tf.setText("");
-//		clickOn("#buttonR2");
-//		s1 = t.getText();
-//		s2 = "Please input a name";
-//		assertTrue(s1.equals(s2));
-//
-//		// Case: y1 is empty
-//		tf.setText("5");
-//		tf = (TextField)s.lookup("#textfieldR2FirstYear");
-//		tf.setText("");
-//		clickOn("#buttonR2");
-//		s1 = t.getText();
-//		s2 = "Please input the year";
-//		assertTrue(s1.equals(s2));
-//
-//		// Case: y1 is out of range
-//		tf.setText("2020");
-//		clickOn("#buttonR2");
-//		s1 = t.getText();
-//		s2 = "Please input year within the range";
-//		assertTrue(s1.equals(s2));
-//
-//		// Case: y1 > y2
-//		tf.setText("2015");
-//		clickOn("#buttonR2");
-//		s1 = t.getText();
-//		s2 = "first year should be strictly smaller than last year";
-//		assertTrue(s1.equals(s2));
+		// Case: Empty name
+		TextField tf = (TextField)s.lookup("#textfieldR2Name");
+		tf.setText("");
+		clickOn("#buttonR2");
+		s1 = t.getText();
+		s2 = "Please input a name";
+		assertTrue(s1.equals(s2));
+
+		// Case: y1 is empty
+		tf.setText("5");
+		tf = (TextField)s.lookup("#textfieldR2FirstYear");
+		tf.setText("");
+		clickOn("#buttonR2");
+		s1 = t.getText();
+		s2 = "Please input the year";
+		assertTrue(s1.equals(s2));
+
+		// Case: y1 is out of range
+		tf.setText("2020");
+		clickOn("#buttonR2");
+		s1 = t.getText();
+		s2 = "Please input year within the range";
+		assertTrue(s1.equals(s2));
+
+		// Case: y1 > y2
+		tf.setText("2015");
+		clickOn("#buttonR2");
+		s1 = t.getText();
+		s2 = "first year should be strictly smaller than last year";
+		assertTrue(s1.equals(s2));
 	}
 
 	@Test
@@ -319,36 +319,36 @@ public class JavaFXTest extends ApplicationTest {
 
 //		// check other cases
 //
-//		// Case: empty user name
-//		TextField tf = (TextField)s.lookup("#textfieldA2iName");
-//		tf.setText("");
-//		clickOn("#buttonA2");
-//		s1 = t.getText();
-//		s2 = "Please input your name";
-//		assertTrue(s1.equals(s2));
-//
-//		// Case: empty iYOB
-//		tf.setText("Ryan");
-//		tf = (TextField)s.lookup("#textfieldA2iYOB");
-//		tf.setText("");
-//		clickOn("#buttonA2");
-//		s1 = t.getText();
-//		s2 = "Please input your year of birth";
-//		assertTrue(s1.equals(s2));
-//
-//		// Case: iYOB out of range
-//		tf.setText("2222");
-//		clickOn("#buttonA2");
-//		s1 = t.getText();
-//		s2 = "Can only calculate year of birth from 1881 to 2018";
-//		assertTrue(s1.equals(s2));
-//		
-//		// Case: invalid iYOB
-//			tf.setText("twenty");
-//			clickOn("#buttonA2");
-//			s1 = t.getText();
-//			s2 = "Invalid Year. Please input year between 1880 and 2019.";
-//			assertTrue(s1.equals(s2));
+		// Case: empty user name
+		TextField tf = (TextField)s.lookup("#textfieldA2iName");
+		tf.setText("");
+		clickOn("#buttonA2");
+		s1 = t.getText();
+		s2 = "Please input your name";
+		assertTrue(s1.equals(s2));
+
+		// Case: empty iYOB
+		tf.setText("Ryan");
+		tf = (TextField)s.lookup("#textfieldA2iYOB");
+		tf.setText("");
+		clickOn("#buttonA2");
+		s1 = t.getText();
+		s2 = "Please input your year of birth";
+		assertTrue(s1.equals(s2));
+
+		// Case: iYOB out of range
+		tf.setText("2222");
+		clickOn("#buttonA2");
+		s1 = t.getText();
+		s2 = "Can only calculate year of birth from 1881 to 2018";
+		assertTrue(s1.equals(s2));
+		
+		// Case: invalid iYOB
+			tf.setText("twenty");
+			clickOn("#buttonA2");
+			s1 = t.getText();
+			s2 = "Invalid Year. Please input year between 1880 and 2019.";
+			assertTrue(s1.equals(s2));
 	}
 		
 	
