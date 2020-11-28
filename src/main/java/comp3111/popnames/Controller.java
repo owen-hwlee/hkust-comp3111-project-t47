@@ -426,7 +426,7 @@ public class Controller {
         int first_year = Integer.parseInt(textfieldR2FirstYear.getText());
         int last_year = Integer.parseInt(textfieldR2LastYear.getText());
 
-        if ( first_year<1880 || last_year>2019 ) {
+        if ( first_year<1880|| first_year > 2019 || last_year < 1880 || last_year>2019 ) {
         	textAreaConsole.setText("Please input year within the range");
         	return;
         }

@@ -316,6 +316,7 @@ public class JavaFXTest extends ApplicationTest {
 		String s2 = "The soulmate name will be Brandon";
 		assertTrue(s1.equals(s2));
 //
+
 //		// check other cases
 //
 //		// Case: empty user name
