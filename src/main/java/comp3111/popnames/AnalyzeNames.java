@@ -242,11 +242,11 @@ public class AnalyzeNames {
 	 *It takes user's name, year of birth, gender, preference and soulmate's gender as input.
 	 *It returns the soulmate's name.
 	 *
-	 * @param iName
-	 * @param iGender
-	 * @param iYOB
-	 * @param iGenderMate
-	 * @param iPreference
+	 * @param iName User's name
+	 * @param iGender User's gender
+	 * @param iYOB User's year of birth
+	 * @param iGenderMate Soulmate's gender
+	 * @param iPreference User's preference
 	 * @return
 	 */
 	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
