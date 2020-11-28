@@ -145,7 +145,6 @@ public class JavaFXTest extends ApplicationTest {
 				"-----+------------+------------+------------\n" +
 				"2000 | 13         | 20263      | 1.03%      \n" ;
 //				
-//		assertFalse(s1.equals(s2));
 		assertTrue(s1.equals(s2));
 
 //		// check different values
