@@ -128,7 +128,7 @@ public class JavaFXTest extends ApplicationTest {
 
 	@Test
 	public void testButtonR2() {
-		// TODO: Ryan UnitTesting
+		
 		clickOn("#tabReport2");
 		// default value
 		
