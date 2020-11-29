@@ -309,7 +309,6 @@ public class JavaFXTest extends ApplicationTest {
 
 	@Test
 	public void testButtonA2() {
-		// TODO: Ryan UnitTesting
 		clickOn("#tabApp2");
 		
 		clickOn("#buttonA2");
