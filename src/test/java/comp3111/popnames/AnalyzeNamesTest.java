@@ -49,7 +49,9 @@ public class AnalyzeNamesTest {
 
     @Test
     public void testGetFreqRank() {
-        // TODO: Ryan UnitTesting
+    	AnalyzeNames a = new AnalyzeNames();
+    	int rank = a.getRank(1999, "Ryan", "M");
+    	assertTrue(rank==12);
     }
 
     @Test
@@ -65,7 +67,9 @@ public class AnalyzeNamesTest {
 
     @Test
     public void testNK_T5() {
-        // TODO: Ryan UnitTesting
+    	AnalyzeNames a = new AnalyzeNames();
+    	String names = a.NK_T5("Ryan", "M", 1999, "M", "Younger");
+    	assertTrue(names.equals("Brandon"));
     }
 
     @Test
@@ -77,7 +81,9 @@ public class AnalyzeNamesTest {
 
     @Test
     public void testGetTotalByGender() {
-        // TODO: Ryan UnitTesting
+    	AnalyzeNames a = new AnalyzeNames();
+    	int rankk = a.getTotalByGender(1999, "M");
+    	assertTrue(rankk == 1918809);
     }
 
     @Test
