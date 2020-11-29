@@ -3,10 +3,25 @@ package comp3111.popnames;
 import org.apache.commons.csv.*;
 import edu.duke.*;
 
+/**
+ * Aesthetic Class containing helper functions useful for the entire programme
+ */
 public class AnalyzeNames {
 
+	/**
+	 * Constant integer that stores the smallest year available in the dataset.
+	 * Current value is 1880.
+	 *
+	 */
 	public static final int LOWER_YEAR = 1880;
+
+	/**
+	 * Constant integer that stores the largest year available in the dataset.
+	 * Current value is 2019.
+	 *
+	 */
 	public static final int UPPER_YEAR = 2019;
+
 
 	public static CSVParser getFileParser(int year) {
      FileResource fr = new FileResource(String.format("dataset/yob%s.csv", year));
@@ -48,7 +63,16 @@ public class AnalyzeNames {
 		
 		return oReport;
 	}
-	
+
+	/**
+	 *
+	 * This function is used to return the total number of boys or girls born in the specific year.
+	 *
+	 *
+	 * @param year birth of year
+	 * @param gender gender of baby
+	 * @return total number of boys or girls
+	 */
 	public static int getTotalByGender(int year, String gender) {
 		
 		
@@ -74,6 +98,8 @@ public class AnalyzeNames {
 		}
 		return 0;
 	}
+
+
 	 public static int getRank(int year, String name, String gender) {
 	     boolean found = false;
 	     int oRank = 0;
@@ -82,7 +108,11 @@ public class AnalyzeNames {
 	         // Increment rank if gender matches param
 	         if (rec.get(1).equals(gender)) {
 	             // Return rank if name matches param
-	             if (rec.get(0).equals(name)) {
+				 String n = rec.get(0);
+				 if (n.substring(0, 1).equals("\uFEFF")) {
+				 	n = n.substring(1);
+				 }
+	             if (n.equals(name)) {
 	             	found = true;
 	             	oRank = rank;
 	             	break;
@@ -111,6 +141,9 @@ public class AnalyzeNames {
 	            if (currentRank == rank) {
 	             	found = true;
 	             	oName = rec.get(0);
+	             	if (oName.substring(0, 1).equals("\uFEFF")) {
+	             		oName = oName.substring(1);
+					}
 	                break;
 	            }
 	         }
@@ -120,14 +153,19 @@ public class AnalyzeNames {
 	     else
 	     	return "information on the name at the specified rank is not available";
 	 }
-	 
+
+
 	 public static int getFreq(int yearOfBirth, String name, String gender)
 	 {
 	     boolean found = false;
 		    int oFreq = 0;
 		    for (CSVRecord rec : getFileParser(yearOfBirth)) {
 		        if (rec.get(1).equals(gender)) {
-		            if (rec.get(0).equals(name)) {
+					String n = rec.get(0);
+					if (n.substring(0, 1).equals("\uFEFF")) {
+						n = n.substring(1);
+					}
+		            if (n.equals(name)) {
 		            	found = true;
 		            	oFreq = Integer.parseInt(rec.get(2));
 		             	break;
@@ -139,7 +177,8 @@ public class AnalyzeNames {
 		    else
 		    	return -1;
 	 }
-	 
+
+
 	 public static int getFreq(int yearOfBirth, int rank, String gender)
 	 {
          boolean found = false;
@@ -168,6 +207,18 @@ public class AnalyzeNames {
 	 }
 	 */
 
+	/**
+	 * This is the implementation of the newly and carefully designed NK-T4 Algorithm of Universal Compatibility.
+	 * It takes names of parents, year of birth of parents, and an optional vintage year as input.
+	 * It returns a String array that contains recommended boy and girl names.
+	 *
+	 * @param dadName Name of dad
+	 * @param momName Name of mom
+	 * @param dadYOB Year of birth of dad
+	 * @param momYOB Year of birth of mom
+	 * @param vintageYear Optional vintage year input
+	 * @return Array of String containing one boy name and one girl name
+	 */
 	 public static String[] NK_T4(String dadName, String momName, int dadYOB, int momYOB, int vintageYear) {
 		 String[] kidNames = new String[2];		// kidNames[0] = boyName, kidNames[1] = girlName
 
@@ -185,9 +236,21 @@ public class AnalyzeNames {
 		 return kidNames;
 	 }
 
+	/**
+	 *
+	 * This is the implementation of the newly and carefully designed NK-T5 Algorithm.
+	 * It takes user's name, year of birth, gender, preference and soulmate's gender as input.
+	 * It returns the soulmate's name.
+	 *
+	 * @param iName User's name
+	 * @param iGender User's gender
+	 * @param iYOB User's year of birth
+	 * @param iGenderMate Soulmate's gender
+	 * @param iPreference User's preference
+	 * @return Soulmate's name
+	 */
 	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
 		 String oName = "";
-		 // TODO
 		 int oRank;
 		 int oYOB = 0;
 //		 oRank = this.getRank()
@@ -208,9 +271,22 @@ public class AnalyzeNames {
 		 return oName;
 	 }
 
+	/**
+	 * This is the implementation of the newly and carefully designed NK-T6 Algorithm of Universal Compatibility.
+	 * It takes user's name, year of birth, gender and soulmate's name and gender, and user's age preference as input.
+	 * The algorithm then considers the frequency and ranking of the names to calculate a score.
+	 * It returns a score of compatibility of the user and his/her soulmate.
+	 * 
+	 * @param iName	User's Name
+	 * @param iGender User's Gender
+	 * @param iYOB User's Year of Birth
+	 * @param iNameMate Soulmate's Name
+	 * @param iGenderMate Soulmate's Gender
+	 * @param iPreference User's Age Preference
+	 * @return
+	 */
 	 public static int NK_T6(String iName, String iGender, int iYOB, String iNameMate, String iGenderMate, String iPreference) {
 		 int oScore = -1;
-		 // TODO
 		 double oRank, oRankMate;
 		 int oYOB;
 		 oRank = getRank(iYOB, iName, iGender);
@@ -226,11 +302,22 @@ public class AnalyzeNames {
 		 
 		 double x = Math.abs(oRank - oRankMate)/oRank;
 		 x = (1-x)*100;
-		 
 		 oScore = (int) x;
+		 
+		 oScore = Math.abs(oScore) % 101;				// customized algorithm which is more realistic
 		 return oScore;
 	 }
 
+	/**
+	 * This is a helper function to parse String inputs for year of birth.
+	 * It returns the corresponding year in Integer type.
+	 * It returns 0 for out of range integers.
+	 * It returns -1 for invalid non-numerical inputs.
+	 * It returns -2 for empty inputs.
+	 *
+	 * @param yob String extracted from text fields
+	 * @return Corresponding year in Integer type, or error integers for incorrect inputs
+	 */
 	 public static int returnYear(String yob) {
 		 try {
 		 	 int year = Integer.parseInt(yob);
@@ -244,6 +331,16 @@ public class AnalyzeNames {
 		 }
 	 }
 
+	/**
+	 * This is a helper function to parse String inputs for any numerical number which should be greater or equal to 1.
+	 * It returns the corresponding number in Integer type.
+	 * It returns 0 for out of range input.
+	 * It returns -1 for invalid non-numerical inputs.
+	 * It returns -2 for empty inputs.
+	 *
+	 * @param number
+	 * @return
+	 */
 	 public static int returnNumber(String number) {
 	 	try {
 	 		int n = Integer.parseInt(number);
