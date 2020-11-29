@@ -135,7 +135,8 @@ public class JavaFXTest extends ApplicationTest {
 		clickOn("#buttonR2");
 		
 		String s1 = t.getText();
-		
+
+//
 		String s2 = "The popularity of Ryan over the period 1999 to 2000.\n" +
 				"\n" +
 				"Detailed results: (in table form)\n" +
