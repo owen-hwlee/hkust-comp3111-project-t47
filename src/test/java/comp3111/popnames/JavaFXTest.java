@@ -130,7 +130,7 @@ public class JavaFXTest extends ApplicationTest {
 	public void testButtonR2() {
 		
 		clickOn("#tabReport2");
-		// default value
+		// default values
 		
 		clickOn("#buttonR2");
 		
