@@ -123,11 +123,12 @@ public class JavaFXTest extends ApplicationTest {
 		s1 = t.getText();
 		s2 = "First year should be strictly smaller than last year!";
 		assertTrue(s1.equals(s2));
-		
+
 	}
 
 	@Test
 	public void testButtonR2() {
+
 		
 		clickOn("#tabReport2");
 		// default values
@@ -184,6 +185,8 @@ public class JavaFXTest extends ApplicationTest {
 		s1 = t.getText();
 		s2 = "first year should be strictly smaller than last year";
 		assertTrue(s1.equals(s2));
+
+		
 	}
 
 	@Test
@@ -310,49 +313,7 @@ public class JavaFXTest extends ApplicationTest {
 	@Test
 	public void testButtonA2() {
 		// TODO: Ryan UnitTesting
-		clickOn("#tabApp2");
-		
-		clickOn("#buttonA2");
-		String s1 = t.getText();
-		String s2 = "The soulmate name will be Brandon";
-		assertTrue(s1.equals(s2));
-//
-
-//		// check other cases
-//
-		// Case: empty user name
-		TextField tf = (TextField)s.lookup("#textfieldA2iName");
-		tf.setText("");
-		clickOn("#buttonA2");
-		s1 = t.getText();
-		s2 = "Please input your name";
-		assertTrue(s1.equals(s2));
-
-		// Case: empty iYOB
-		tf.setText("Ryan");
-		tf = (TextField)s.lookup("#textfieldA2iYOB");
-		tf.setText("");
-		clickOn("#buttonA2");
-		s1 = t.getText();
-		s2 = "Please input your year of birth";
-		assertTrue(s1.equals(s2));
-
-		// Case: iYOB out of range
-		tf.setText("2222");
-		clickOn("#buttonA2");
-		s1 = t.getText();
-		s2 = "Can only calculate year of birth from 1881 to 2018";
-		assertTrue(s1.equals(s2));
-		
-		// Case: invalid iYOB
-			tf.setText("twenty");
-			clickOn("#buttonA2");
-			s1 = t.getText();
-			s2 = "Invalid Year. Please input year between 1880 and 2019.";
-			assertTrue(s1.equals(s2));
 	}
-		
-	
 
 	@Test
 	public void testButtonA3() {
