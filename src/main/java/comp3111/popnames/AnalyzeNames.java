@@ -65,13 +65,11 @@ public class AnalyzeNames {
 	}
 
 	/**
+	 * // TODO: Ryan Javadoc
 	 *
-	 * This function is used to return the total number of boys or girls born in the specific year.
-	 *
-	 *
-	 * @param year birth of year
-	 * @param gender gender of baby
-	 * @return total number of boys or girls
+	 * @param year
+	 * @param gender
+	 * @return
 	 */
 	public static int getTotalByGender(int year, String gender) {
 		
@@ -237,17 +235,14 @@ public class AnalyzeNames {
 	 }
 
 	/**
+	 * // TODO: Ryan Javadoc
 	 *
-	 * This is the implementation of the newly and carefully designed NK-T5 Algorithm.
-	 * It takes user's name, year of birth, gender, preference and soulmate's gender as input.
-	 * It returns the soulmate's name.
-	 *
-	 * @param iName User's name
-	 * @param iGender User's gender
-	 * @param iYOB User's year of birth
-	 * @param iGenderMate Soulmate's gender
-	 * @param iPreference User's preference
-	 * @return Soulmate's name
+	 * @param iName
+	 * @param iGender
+	 * @param iYOB
+	 * @param iGenderMate
+	 * @param iPreference
+	 * @return
 	 */
 	 public static String NK_T5(String iName, String iGender, int iYOB, String iGenderMate, String iPreference) {
 		 String oName = "";
@@ -332,7 +327,7 @@ public class AnalyzeNames {
 	 }
 
 	/**
-	 * This is a helper function to parse String inputs for any numerical number which should be greater or equal to 1.
+	 * This is a helper function to parse String inputs for any numerical number which should be greater or equal to 1
 	 * It returns the corresponding number in Integer type.
 	 * It returns 0 for out of range input.
 	 * It returns -1 for invalid non-numerical inputs.
