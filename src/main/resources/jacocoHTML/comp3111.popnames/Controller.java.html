@@ -589,13 +589,13 @@ import java.util.*;
 <span class="fc" id="L589">    				continue;</span>
     			}
     			// compare case
-<span class="pc bpc" id="L592" title="1 of 2 branches missed.">    			if (rank &lt; t_rank_high)						// if rank is better than previous case</span>
+<span class="fc bfc" id="L592" title="All 2 branches covered.">    			if (rank &lt; t_rank_high)						// if rank is better than previous case</span>
     			{
-<span class="nc" id="L594">    				t_rank_high = rank; t_year_high = p;</span>
+<span class="fc" id="L594">    				t_rank_high = rank; t_year_high = p;</span>
     			}
-<span class="pc bpc" id="L596" title="1 of 2 branches missed.">    			else if (rank &gt; t_rank_low)					// if rank is worse than previous case</span>
+<span class="fc bfc" id="L596" title="All 2 branches covered.">    			else if (rank &gt; t_rank_low)					// if rank is worse than previous case</span>
     			{
-<span class="nc" id="L598">    				t_rank_low = rank; t_year_low = p;</span>
+<span class="fc" id="L598">    				t_rank_low = rank; t_year_low = p;</span>
     			}
     		}
 <span class="fc bfc" id="L601" title="All 2 branches covered.">    		if (maintain)</span>
@@ -622,7 +622,7 @@ import java.util.*;
 <span class="fc" id="L622">	        s += String.format(&quot;| %1$-15s&quot;, name_output.toArray()[i]);</span>
 <span class="fc" id="L623">	        s += String.format(&quot;| %1$-13s%2$-10s&quot;, rank_lowest.get(i), &quot;[in &quot; + year_lowest.get(i) + &quot;]&quot;);</span>
 <span class="fc" id="L624">	        s += String.format(&quot;| %1$-13s%2$-10s&quot;, rank_highest.get(i), &quot;[in &quot; + year_highest.get(i) + &quot;]&quot;);</span>
-<span class="pc bpc" id="L625" title="2 of 4 branches missed.">	        String trend = year_lowest.get(i) &lt; year_highest.get(i) ? &quot;UP&quot; : year_lowest.get(i) &gt; year_highest.get(i) ? &quot;DOWN&quot; : &quot;FLAT&quot;;</span>
+<span class="fc bfc" id="L625" title="All 4 branches covered.">	        String trend = year_lowest.get(i) &lt; year_highest.get(i) ? &quot;UP&quot; : year_lowest.get(i) &gt; year_highest.get(i) ? &quot;DOWN&quot; : &quot;FLAT&quot;;</span>
 <span class="fc" id="L626">	        s += String.format(&quot;| %1$-15s|\n&quot;, trend);</span>
 <span class="fc" id="L627">	        s += &quot;|----------------+------------------------+------------------------+----------------|\n&quot;;</span>
         }
