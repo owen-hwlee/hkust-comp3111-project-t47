@@ -38,8 +38,8 @@
 
 ## Relevant Documentations
 ### Unit Testing Report
-[Unit test report](./build/reports/tests/test/index.html)
+[Unit test report](./src/main/resources/reports/tests/test/index.html)
 ### Coverage Test Report
-[Test coverage](./build/jacocoHTML/index.html)
+[Test coverage](./src/main/resources/jacocoHTML/index.html)
 ### JavaDoc Documentation
-[JavaDoc documentation](./build/docs/javadoc/comp3111/popnames/package-summary.html)
+[JavaDoc documentation](./src/main/resources/docs/javadoc/comp3111/popnames/package-summary.html)
